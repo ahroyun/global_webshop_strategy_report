@@ -18,68 +18,109 @@
     --white: #FFFFFF;
     --red:   #DC2626;
     --green: #16A34A;
+    --sb-w:  220px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body { font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; font-size: 14px; color: var(--text); background: #F1F5F9; line-height: 1.6; }
 
-  /* COVER */
-  .cover { background: linear-gradient(150deg, #0D1F3C 0%, #1B3A6B 55%, #1D4ED8 100%); color: white; padding: 72px 60px 56px; }
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed; top: 0; left: 0; width: var(--sb-w);
+    height: 100vh; background: var(--navy); overflow-y: auto;
+    z-index: 100; display: flex; flex-direction: column;
+    transition: transform .25s ease;
+  }
+  .sb-header {
+    padding: 22px 18px 16px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    flex-shrink: 0;
+  }
+  .sb-header .sb-label { font-size: 10px; letter-spacing: 2px; color: #93C5FD; text-transform: uppercase; margin-bottom: 4px; }
+  .sb-header .sb-title { font-size: 13px; font-weight: 800; color: white; line-height: 1.4; }
+  .sb-menu { list-style: none; padding: 10px 0; flex: 1; }
+  .sb-menu li { }
+  .sb-link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 18px; text-decoration: none;
+    transition: background .15s;
+    border-left: 3px solid transparent;
+  }
+  .sb-link:hover { background: rgba(255,255,255,.08); }
+  .sb-link.active { background: rgba(37,99,235,.25); border-left-color: #60A5FA; }
+  .sb-num { font-size: 10px; font-weight: 800; color: #93C5FD; letter-spacing: .5px; min-width: 22px; }
+  .sb-txt { font-size: 12px; color: #CBD5E1; line-height: 1.4; }
+  .sb-link.active .sb-txt { color: white; font-weight: 700; }
+  .sb-footer { padding: 14px 18px; font-size: 11px; color: #475569; border-top: 1px solid rgba(255,255,255,.08); flex-shrink: 0; }
+
+  /* mobile toggle */
+  .sb-toggle {
+    display: none; position: fixed; top: 14px; left: 14px; z-index: 200;
+    background: var(--navy); color: white; border: none; border-radius: 8px;
+    width: 40px; height: 40px; font-size: 18px; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+
+  /* ── MAIN ── */
+  .main { margin-left: var(--sb-w); }
+  .cover {
+    background: linear-gradient(150deg, #0D1F3C 0%, #1B3A6B 55%, #1D4ED8 100%);
+    color: white; padding: 72px 60px 56px;
+  }
   .cover .eyebrow { font-size: 11px; letter-spacing: 3px; color: #93C5FD; text-transform: uppercase; margin-bottom: 14px; }
   .cover h1 { font-size: 34px; font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
   .cover .desc { font-size: 14px; color: #BAD4FB; margin-bottom: 36px; }
   .cover-meta { display: flex; gap: 16px; flex-wrap: wrap; }
-  .cover-meta span { background: rgba(255,255,255,0.12); border-radius: 6px; padding: 8px 16px; font-size: 13px; color: #CBD5E1; }
+  .cover-meta span { background: rgba(255,255,255,.12); border-radius: 6px; padding: 8px 16px; font-size: 13px; color: #CBD5E1; }
   .cover-meta span b { color: white; display: block; font-size: 14px; margin-bottom: 2px; }
 
-  /* LAYOUT */
-  .container { max-width: 940px; margin: 0 auto; padding: 36px 20px 80px; }
+  .container { max-width: 900px; margin: 0 auto; padding: 36px 28px 80px; }
 
-  /* SECTION */
-  .section { background: white; border-radius: 10px; padding: 32px 36px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  /* ── SECTION ── */
+  .section { background: white; border-radius: 10px; padding: 32px 36px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,.06); scroll-margin-top: 24px; }
   .sec-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--mgray); }
   .sec-num { background: var(--navy); color: white; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; letter-spacing: 1px; }
   .sec-title { font-size: 18px; font-weight: 800; color: var(--navy); }
   .sub-hd { font-size: 13px; font-weight: 700; color: var(--navy); margin: 22px 0 10px; padding-left: 10px; border-left: 3px solid var(--blue); }
   p.lead { font-size: 14px; color: var(--sub); line-height: 1.8; margin-bottom: 14px; }
 
-  /* TABLES */
+  /* ── TABLES ── */
   .tw { overflow-x: auto; margin: 10px 0; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   thead tr { background: var(--navy); }
-  thead th { padding: 9px 13px; font-weight: 600; color: white; text-align: center; font-size: 12px; letter-spacing: 0.3px; }
+  thead th { padding: 9px 13px; font-weight: 600; color: white; text-align: center; font-size: 12px; }
   thead th:first-child { text-align: left; }
   tbody tr { border-bottom: 1px solid var(--mgray); }
   tbody tr:last-child { border-bottom: none; }
   tbody tr:hover { background: #F8FAFF; }
   tbody td { padding: 9px 13px; color: var(--sub); vertical-align: middle; text-align: center; }
   tbody td:first-child { text-align: left; font-weight: 600; color: var(--navy); }
-  td.hi { background: var(--lblue); font-weight: 700; color: var(--navy); }
+  td.hi   { background: var(--lblue); font-weight: 700; color: var(--navy); }
   td.warn { background: #FEF2F2; color: #991B1B; font-weight: 600; }
-  td.ok { background: #F0FDF4; color: #166534; font-weight: 600; }
+  td.ok   { background: #F0FDF4; color: #166534; font-weight: 600; }
 
-  /* INFO TABLE */
   .itbl { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; border: 1px solid var(--mgray); border-radius: 6px; overflow: hidden; }
   .itbl tr { border-bottom: 1px solid var(--mgray); }
   .itbl tr:last-child { border-bottom: none; }
   .itbl td { padding: 10px 14px; vertical-align: top; line-height: 1.7; color: var(--sub); }
   .itbl td:first-child { width: 22%; font-weight: 700; color: var(--navy); background: var(--lgray); border-right: 1px solid var(--mgray); white-space: nowrap; }
 
-  /* KPI GRID */
+  /* ── KPI ── */
   .kpi-row { display: grid; gap: 14px; margin: 14px 0; }
   .kpi-row.c2 { grid-template-columns: repeat(2,1fr); }
   .kpi-row.c3 { grid-template-columns: repeat(3,1fr); }
   .kpi-row.c4 { grid-template-columns: repeat(4,1fr); }
   .kpi { background: var(--lgray); border-top: 3px solid var(--navy); border-radius: 8px; padding: 18px 14px; text-align: center; }
-  .kpi.blue { border-color: var(--blue); }
-  .kpi.red  { border-color: var(--red); }
-  .kpi.green{ border-color: var(--green); }
-  .kpi .val { font-size: 28px; font-weight: 900; color: var(--navy); line-height: 1; }
-  .kpi.red .val { color: var(--red); }
+  .kpi.blue  { border-color: var(--blue); }
+  .kpi.red   { border-color: var(--red); }
+  .kpi.green { border-color: var(--green); }
+  .kpi .val  { font-size: 28px; font-weight: 900; color: var(--navy); line-height: 1; }
+  .kpi.red   .val { color: var(--red); }
   .kpi.green .val { color: var(--green); }
-  .kpi .lbl { font-size: 12px; color: var(--gray); margin-top: 6px; line-height: 1.5; }
+  .kpi .lbl  { font-size: 12px; color: var(--gray); margin-top: 6px; line-height: 1.5; }
   .kpi .note { font-size: 11px; color: var(--dgray); margin-top: 4px; }
 
-  /* CALLOUT */
+  /* ── CALLOUT ── */
   .callout { display: flex; border-radius: 6px; overflow: hidden; margin: 14px 0; border: 1px solid var(--mgray); }
   .callout .badge { padding: 0 16px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: white; min-width: 64px; text-align: center; line-height: 1.4; }
   .callout .body  { padding: 12px 16px; font-size: 13px; color: var(--sub); flex: 1; line-height: 1.7; background: var(--lgray); }
@@ -88,13 +129,13 @@
   .callout.alert .badge { background: var(--red); } .callout.alert .body { background: #FEF2F2; }
   .callout.good  .badge { background: var(--green); } .callout.good  .body { background: #F0FDF4; }
 
-  /* CASE CARDS */
+  /* ── CASE CARDS ── */
   .case-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin: 14px 0; }
   .case-card { border: 1px solid var(--mgray); border-radius: 8px; overflow: hidden; cursor: pointer; transition: box-shadow .15s; }
-  .case-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .case-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); }
   .case-card .card-hd { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; }
   .case-card .card-hd-left { display: flex; align-items: center; gap: 10px; }
-  .case-card .tag { font-size: 10px; font-weight: 800; color: white; padding: 3px 7px; border-radius: 4px; letter-spacing: 0.5px; }
+  .case-card .tag  { font-size: 10px; font-weight: 800; color: white; padding: 3px 7px; border-radius: 4px; }
   .case-card .name { font-size: 14px; font-weight: 700; color: var(--navy); }
   .case-card .chevron { font-size: 12px; color: var(--dgray); transition: transform .2s; }
   .case-card.open .chevron { transform: rotate(180deg); }
@@ -106,36 +147,35 @@
   .case-card .card-footer { margin-top: 12px; display: flex; justify-content: flex-end; }
   .case-card .shop-link { font-size: 12px; font-weight: 700; color: var(--blue); text-decoration: none; border: 1px solid var(--blue); padding: 5px 12px; border-radius: 5px; }
   .case-card .shop-link:hover { background: var(--lblue); }
-  /* card colors */
-  .c-pogo   .card-hd { background: #FFFBEB; } .c-pogo   .tag { background: #CA8A04; }
-  .c-super  .card-hd { background: var(--lblue); } .c-super  .tag { background: var(--blue); }
-  .c-mono   .card-hd { background: #F0FDF4; } .c-mono   .tag { background: var(--green); }
-  .c-plytk  .card-hd { background: #FDF4FF; } .c-plytk  .tag { background: #9333EA; }
+  .c-pogo  .card-hd { background: #FFFBEB; } .c-pogo  .tag { background: #CA8A04; }
+  .c-super .card-hd { background: var(--lblue); } .c-super .tag { background: var(--blue); }
+  .c-mono  .card-hd { background: #F0FDF4; } .c-mono  .tag { background: var(--green); }
+  .c-plytk .card-hd { background: #FDF4FF; } .c-plytk .tag { background: #9333EA; }
 
-  /* PHASE */
+  /* ── PHASE ── */
   .phases { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 14px 0; }
   .phase { border-radius: 8px; overflow: hidden; border: 1px solid var(--mgray); }
   .phase .ph-hd { padding: 14px 16px; background: var(--navy); color: white; }
-  .phase .ph-hd .ph-label { font-size: 10px; letter-spacing: 2px; opacity: .7; }
-  .phase .ph-hd .ph-name  { font-size: 14px; font-weight: 700; margin-top: 2px; }
-  .phase .ph-hd .ph-period{ font-size: 11px; opacity: .65; margin-top: 3px; }
+  .phase .ph-hd .ph-label  { font-size: 10px; letter-spacing: 2px; opacity: .7; }
+  .phase .ph-hd .ph-name   { font-size: 14px; font-weight: 700; margin-top: 2px; }
+  .phase .ph-hd .ph-period { font-size: 11px; opacity: .65; margin-top: 3px; }
   .phase .ph-body { padding: 14px 16px; background: white; }
   .phase .ph-body li { font-size: 13px; color: var(--sub); padding: 5px 0; border-bottom: 1px dashed var(--mgray); list-style: none; line-height: 1.6; }
   .phase .ph-body li:last-child { border-bottom: none; }
   .phase .ph-body li::before { content: "— "; color: var(--blue); font-weight: 700; }
 
-  /* SUMMARY */
+  /* ── SUMMARY ── */
   .sum-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin: 14px 0; }
   .sum-card { background: var(--lgray); border-left: 3px solid var(--navy); border-radius: 6px; padding: 14px 16px; }
   .sum-card .sn { font-size: 10px; font-weight: 800; color: var(--blue); letter-spacing: 1px; margin-bottom: 4px; }
   .sum-card .st { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
   .sum-card .sb { font-size: 13px; color: var(--sub); line-height: 1.6; }
 
-  /* HYBRID MAP */
+  /* ── HYBRID MAP ── */
   .hmap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
   .hmap-box { border-radius: 8px; padding: 20px; }
-  .hmap-box.self  { background: var(--lblue); border: 1px solid #BFDBFE; }
-  .hmap-box.xsolla{ background: #F5F3FF; border: 1px solid #DDD6FE; }
+  .hmap-box.self   { background: var(--lblue); border: 1px solid #BFDBFE; }
+  .hmap-box.xsolla { background: #F5F3FF; border: 1px solid #DDD6FE; }
   .hmap-box .hmap-title { font-size: 13px; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .hmap-box.self   .hmap-title { color: var(--navy); }
   .hmap-box.xsolla .hmap-title { color: #5B21B6; }
@@ -147,10 +187,7 @@
   .hmap-box.xsolla .region { background: #7C3AED; color: white; }
   .hmap-box p { font-size: 12px; color: var(--sub); margin-top: 10px; line-height: 1.7; }
 
-  /* NOTE */
-  .note { font-size: 12px; color: var(--gray); background: var(--lgray); border-left: 3px solid var(--mgray); padding: 8px 12px; border-radius: 0 4px 4px 0; margin: 8px 0; line-height: 1.6; }
-
-  /* GAP ANALYSIS */
+  /* ── GAP ── */
   .gap-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
   .gap-box { border-radius: 8px; padding: 16px 18px; }
   .gap-box.now  { background: #FEF2F2; border: 1px solid #FECACA; }
@@ -164,7 +201,8 @@
   .gap-box.now  li::before { content: "✕  "; color: var(--red); font-size: 11px; }
   .gap-box.need li::before { content: "✓  "; color: var(--blue); font-size: 11px; }
 
-  /* FOOTNOTES */
+  /* ── NOTE / FOOTER ── */
+  .note { font-size: 12px; color: var(--gray); background: var(--lgray); border-left: 3px solid var(--mgray); padding: 8px 12px; border-radius: 0 4px 4px 0; margin: 8px 0; line-height: 1.6; }
   .footnotes { margin-top: 36px; padding: 22px 26px; background: var(--lgray); border-radius: 8px; }
   .footnotes h4 { font-size: 11px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
   .footnotes ol { padding-left: 16px; }
@@ -173,12 +211,26 @@
   .footnotes a:hover { text-decoration: underline; }
   .footnotes em { color: #B45309; font-style: normal; }
   sup.ref { font-size: 10px; color: var(--blue); font-weight: 700; vertical-align: super; line-height: 0; margin-left: 1px; }
-
-  /* FOOTER */
   .footer { text-align: center; padding: 24px 0 0; color: var(--dgray); font-size: 12px; border-top: 1px solid var(--mgray); margin-top: 24px; }
 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    :root { --sb-w: 200px; }
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; }
+    .sb-toggle { display: flex; align-items: center; justify-content: center; }
+    .cover { padding: 60px 24px 40px; }
+    .cover h1 { font-size: 26px; }
+    .container { padding: 24px 16px 60px; }
+    .section { padding: 22px 18px; }
+    .case-grid, .hmap, .gap-row, .phases { grid-template-columns: 1fr; }
+    .kpi-row.c3, .kpi-row.c4 { grid-template-columns: repeat(2,1fr); }
+    .sum-grid { grid-template-columns: 1fr; }
+  }
   @media print {
-    body { background: white; }
+    .sidebar, .sb-toggle { display: none; }
+    .main { margin-left: 0; }
     .section { box-shadow: none; border: 1px solid var(--mgray); page-break-inside: avoid; }
     .cover, thead tr, .phase .ph-hd { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .case-card .card-body { display: block !important; }
@@ -186,6 +238,33 @@
 </style>
 </head>
 <body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sb-header">
+    <div class="sb-label">Strategy Report · 2026.06</div>
+    <div class="sb-title">게임사 웹샵<br>런칭 및 운영 전략</div>
+  </div>
+  <ul class="sb-menu">
+    <li><a href="#s00" class="sb-link"><span class="sb-num">00</span><span class="sb-txt">현황 진단</span></a></li>
+    <li><a href="#s01" class="sb-link"><span class="sb-num">01</span><span class="sb-txt">자사 웹샵 분석</span></a></li>
+    <li><a href="#s02" class="sb-link"><span class="sb-num">02</span><span class="sb-txt">타사 운영 사례</span></a></li>
+    <li><a href="#s03" class="sb-link"><span class="sb-num">03</span><span class="sb-txt">전략 프레임워크</span></a></li>
+    <li><a href="#s04" class="sb-link"><span class="sb-num">04</span><span class="sb-txt">하이브리드 전략</span></a></li>
+    <li><a href="#s05" class="sb-link"><span class="sb-num">05</span><span class="sb-txt">상품·이벤트·포인트</span></a></li>
+    <li><a href="#s06" class="sb-link"><span class="sb-num">06</span><span class="sb-txt">마케팅 전략</span></a></li>
+    <li><a href="#s07" class="sb-link"><span class="sb-num">07</span><span class="sb-txt">운영 KPI</span></a></li>
+    <li><a href="#s08" class="sb-link"><span class="sb-num">08</span><span class="sb-txt">실행 로드맵</span></a></li>
+    <li><a href="#s09" class="sb-link"><span class="sb-num">09</span><span class="sb-txt">핵심 요약</span></a></li>
+  </ul>
+  <div class="sb-footer">gm.floor.line.games/kr/shop</div>
+</nav>
+
+<!-- MOBILE TOGGLE -->
+<button class="sb-toggle" id="sbToggle">☰</button>
+
+<!-- MAIN -->
+<div class="main">
 
 <div class="cover">
   <div class="eyebrow">Strategy Report · 2026.06</div>
@@ -200,8 +279,8 @@
 
 <div class="container">
 
-<!-- 00. 현황 진단 -->
-<div class="section">
+<!-- 00 -->
+<div class="section" id="s00">
   <div class="sec-hd"><span class="sec-num">00</span><span class="sec-title">현황 진단 — GM 웹샵 매출 추이</span></div>
   <div class="tw">
     <table>
@@ -214,7 +293,7 @@
   </div>
   <div class="callout alert" style="margin-top:14px">
     <div class="badge">진단</div>
-    <div class="body">4월 이후 매출 및 비중이 급격히 하락. 10월~12월 비중 0.1% 수준은 사실상 웹샵이 유저에게 인지되지 않고 있음을 의미합니다.</div>
+    <div class="body">4월 이후 매출 및 비중이 급격히 하락. 10~12월 비중 0.1% 수준은 사실상 웹샵이 유저에게 인지되지 않고 있음을 의미합니다.</div>
   </div>
   <div class="kpi-row c4" style="margin-top:18px">
     <div class="kpi red"><div class="val">0.1%</div><div class="lbl">GM 웹샵<br>현재 Capture Rate</div><div class="note">10~12월 평균</div></div>
@@ -224,10 +303,10 @@
   </div>
 </div>
 
-<!-- 01. 자사 웹샵 현황 분석 -->
-<div class="section">
+<!-- 01 -->
+<div class="section" id="s01">
   <div class="sec-hd"><span class="sec-num">01</span><span class="sec-title">자사 웹샵 현황 분석 — 타사 대비 Gap</span></div>
-  <p class="lead">GM 웹샵(<a href="https://gm.floor.line.games/kr/shop" target="_blank" style="color:var(--blue)">gm.floor.line.games/kr/shop</a>)의 현재 구성을 글로벌 상위 게임사 웹샵과 비교했을 때, 유저를 묶어두는 구조적 장치가 전반적으로 부재합니다.</p>
+  <p class="lead">GM 웹샵(<a href="https://gm.floor.line.games/kr/shop" target="_blank" style="color:var(--blue)">gm.floor.line.games/kr/shop</a>)의 현재 구성을 글로벌 상위 게임사 웹샵과 비교했을 때, 재방문을 유도하는 구조적 장치가 부분적으로 부재합니다.</p>
 
   <div class="sub-hd">현재 GM 웹샵 운영 현황</div>
   <div class="tw">
@@ -236,23 +315,23 @@
       <tbody>
         <tr><td>상품 구성</td><td>캐럿 패키지 5종, 월간 패키지 3종, 캐릭터 선택권 (전 상품 "[전용]" 라벨)</td><td class="warn">재화·패키지 위주 — 독점 스킨·이벤트 상품 없음</td></tr>
         <tr><td>포인트 제도</td><td>실결제금액의 <b>10% 적립</b>, 1P=1원, 최대 50% 사용, 유효기간 60일</td><td class="ok">적립율 10%는 경쟁력 있는 수준 (Pokemon GO 7~10%와 유사)</td></tr>
-        <tr><td>포인트 유효기간</td><td>적립일로부터 <b>60일</b></td><td class="warn">타사 대비 짧음 — Monopoly GO 90일, 소멸 임박 알림 활용 여부 불명</td></tr>
-        <tr><td>포인트 교환처</td><td>창세기전스토어 내 상품 구매에만 사용 가능</td><td class="warn">아이템 교환 카탈로그 없음 — 포인트 사용 동기 제한적</td></tr>
+        <tr><td>포인트 유효기간</td><td>적립일로부터 <b>60일</b></td><td class="warn">타사 대비 짧음 — 소멸 임박 알림 활용 여부 불명</td></tr>
+        <tr><td>포인트 교환처</td><td>창세기전스토어 내 상품 구매에만 사용 가능</td><td class="warn">아이템 교환 카탈로그 없음 — 사용 동기 제한적</td></tr>
         <tr><td>쿠폰</td><td>쿠폰 메뉴 별도 운영 중</td><td class="ok">기본 구조 존재</td></tr>
         <tr><td>데일리 보상</td><td>없음</td><td class="warn">재방문 유도 장치 부재</td></tr>
         <tr><td>멤버십/VIP</td><td>없음</td><td class="warn">충성 유저 락인 수단 없음</td></tr>
-        <tr><td>이벤트 상품</td><td>게임 업데이트 연계 한정 상품 판매 이력 있음 (2025년 중순까지 운영)</td><td class="warn">현재 중단 상태 — 8월 초 이후 중단, 9월부터 매출 급감 — 직접적 인과관계 단정은 어려우나 시기적으로 겹침. 재개 검토 필요</td></tr>
+        <tr><td>이벤트 상품</td><td>게임 업데이트 연계 한정 상품 운영 이력 있음 (2025년 8월 초 이후 중단)</td><td class="warn">9월부터 매출 급감과 시기적으로 겹침 — 재개 검토 필요</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="sub-hd">포인트 제도 현황 — 강점과 개선 포인트</div>
+  <div class="sub-hd">강점과 개선 포인트</div>
   <div class="gap-row">
     <div class="gap-box need">
       <div class="gb-title">현재 잘 되어 있는 것</div>
       <ul>
-        <li>적립율 10% — Pokemon GO(7~10%)와 동등한 경쟁력 있는 수준</li>
-        <li>결제금액 50%까지 사용 가능 — 유저에게 실질적 혜택</li>
+        <li>포인트 적립율 10% — Pokemon GO(7~10%)와 동등한 수준</li>
+        <li>결제금액 50%까지 포인트 사용 가능 — 실질적 혜택</li>
         <li>쿠폰 시스템 별도 운영 중</li>
         <li>전 상품 "[전용]" 라벨로 웹샵 독점성 기반 구축</li>
       </ul>
@@ -260,13 +339,13 @@
     <div class="gap-box now">
       <div class="gb-title">개선이 필요한 것</div>
       <ul>
-        <li>유효기간 60일 — 타사 대비 짧아 소멸 전 사용 압박만 남김</li>
-        <li>포인트 사용처가 상품 구매뿐 — 아이템 교환 카탈로그 없음</li>
-        <li>포인트 소멸 임박 알림 활용 여부 불명 (재방문 트리거로 활용 필요)</li>
-        <li>데일리 로그인 보상 없음 — 방문 습관 형성 장치 부재</li>
+        <li>포인트 유효기간 60일 — 타사 대비 짧아 연장 검토 필요</li>
+        <li>포인트 사용처가 상품 구매뿐 — 교환 카탈로그 없음</li>
+        <li>포인트 소멸 임박 알림 미활용</li>
+        <li>데일리 로그인 보상 없음</li>
         <li>Stamp Card / 누적 리워드 없음</li>
-        <li>이벤트 상품 운영 중단 (2025년 8월 초 이후) — 9월 매출 급감과 시기적으로 겹침 (인과관계 단정은 어려우나 재개 검토 필요)</li>
-        <li>첫 구매 웰컴 오퍼 (역진 보너스) 없음</li>
+        <li>이벤트 상품 운영 중단 (2025년 8월 초 이후)</li>
+        <li>첫 구매 웰컴 오퍼 없음</li>
         <li>멤버십 / VIP 등급 없음</li>
       </ul>
     </div>
@@ -275,241 +354,193 @@
   <div class="sub-hd">우선순위별 개선 방향</div>
   <div class="tw">
     <table>
-      <thead><tr><th>우선순위</th><th>개선 항목</th><th>현재 상태</th><th>근거 (타사 사례)</th><th>예상 효과</th></tr></thead>
+      <thead><tr><th>우선순위</th><th>개선 항목</th><th>현재 상태</th><th>예상 효과</th></tr></thead>
       <tbody>
-        <tr><td class="hi">1순위</td><td>포인트 유효기간 연장</td><td class="warn">60일</td><td>Monopoly GO 90일 이상</td><td>소멸 부담 완화 → 자연스러운 재방문 유도</td></tr>
-        <tr><td class="hi">1순위</td><td>포인트 소멸 임박 알림 발송</td><td class="warn">운영 여부 불명</td><td>공통 — 소멸 임박 = 재방문 트리거</td><td>휴면 유저 재활성화</td></tr>
-        <tr><td class="hi">1순위</td><td>데일리 로그인 보상 도입</td><td class="warn">없음</td><td>글로벌 운영 데이터</td><td>활성 유저 +200%, 월 구매 +50% <sup class="ref">4</sup></td></tr>
-        <tr><td class="hi">1순위</td><td>첫 구매 웰컴 오퍼 (역진 보너스)</td><td class="warn">없음</td><td>Pokemon GO — 소액에 높은 보너스율</td><td>첫 전환율 극대화</td></tr>
-        <tr><td>2순위</td><td>포인트 교환 카탈로그 추가</td><td class="warn">상품 구매만 가능</td><td>Pokemon GO, Monopoly GO</td><td>포인트 사용 동기 강화 → 재방문</td></tr>
-        <tr><td>2순위</td><td>Stamp Card 도입</td><td class="warn">없음</td><td>Supercell — N회 구매 시 보상</td><td>반복 구매 동기</td></tr>
-        <tr><td class="hi">1순위</td><td>이벤트 상품 운영 재개</td><td class="warn">2025년 중순 이후 중단</td><td>8월 초 이후 중단, 9월부터 매출 급감 — 시기적으로 겹치나 인과관계 단정은 어려움. 재개 시 매출 회복 가능성 검토 필요</td><td>매출 회복 가장 직접적인 레버</td></tr>
-        <tr><td>3순위</td><td>VIP 멤버십 (등급제)</td><td class="warn">없음</td><td>Monopoly GO Tycoon Club</td><td>충성 유저 락인</td></tr>
+        <tr><td class="hi">1순위</td><td>이벤트 상품 운영 재개</td><td class="warn">2025년 8월 초 이후 중단</td><td>매출 회복 가장 직접적인 레버 — 9월 급감과 시기 겹침 (인과관계 단정은 어려움)</td></tr>
+        <tr><td class="hi">1순위</td><td>포인트 소멸 임박 알림 발송</td><td class="warn">미운영</td><td>추가 개발 없이 즉시 적용 가능한 재방문 트리거</td></tr>
+        <tr><td class="hi">1순위</td><td>데일리 로그인 보상 도입</td><td class="warn">없음</td><td>활성 유저 +200%, 월 구매 +50% <sup class="ref">4</sup></td></tr>
+        <tr><td class="hi">1순위</td><td>첫 구매 웰컴 오퍼</td><td class="warn">없음</td><td>첫 전환율 극대화 — Pokemon GO 역진 보너스 구조 참고</td></tr>
+        <tr><td>2순위</td><td>포인트 유효기간 연장 (60일→90~180일)</td><td class="warn">60일</td><td>소멸 압박 완화 → 자연스러운 재방문</td></tr>
+        <tr><td>2순위</td><td>포인트 교환 카탈로그 추가</td><td class="warn">없음</td><td>포인트 사용 동기 다양화</td></tr>
+        <tr><td>2순위</td><td>Stamp Card 도입</td><td class="warn">없음</td><td>반복 구매 동기 — Supercell 구조 참고</td></tr>
+        <tr><td>3순위</td><td>VIP 멤버십 등급제</td><td class="warn">없음</td><td>충성 유저 락인</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- 02. 타 게임사 사례 -->
-<div class="section">
+<!-- 02 -->
+<div class="section" id="s02">
   <div class="sec-hd"><span class="sec-num">02</span><span class="sec-title">타 게임사 웹샵 운영 사례</span></div>
   <p class="lead">카드를 클릭하면 상세 내용을 볼 수 있습니다.</p>
   <div class="case-grid">
-
     <div class="case-card c-pogo" onclick="toggle(this)">
       <div class="card-hd">
-        <div class="card-hd-left">
-          <span class="tag">SCOPELY</span>
-          <span class="name">Pokemon GO Web Store</span>
-        </div>
+        <div class="card-hd-left"><span class="tag">SCOPELY</span><span class="name">Pokemon GO Web Store</span></div>
         <span class="chevron">▼</span>
       </div>
       <div class="card-body">
-        <div class="row"><b>핵심 유인</b>앱 대비 7~10% 추가 코인 — 소액 구매일수록 보너스율 높게 설계 (역진 구조로 첫 구매 유도)</div>
+        <div class="row"><b>핵심 유인</b>앱 대비 7~10% 추가 코인 — 소액 구매일수록 보너스율 높게 설계 (역진 구조)</div>
         <div class="row"><b>포인트 제도</b>모든 구매 시 포인트 적립 → 레이드 티켓·인큐베이터 등 인게임 아이템 교환</div>
         <div class="row"><b>첫 구매 혜택</b>£9.99 이상 첫 구매 시 15% 할인 쿠폰 제공</div>
         <div class="row"><b>실적</b>웹샵 누적 매출 약 $8B · 주간 활성 유저 2,000만 명 <sup class="ref">5</sup></div>
         <div class="card-footer"><a class="shop-link" href="https://store.pokemongo.com/" target="_blank">웹샵 바로가기 →</a></div>
       </div>
     </div>
-
     <div class="case-card c-super" onclick="toggle(this)">
       <div class="card-hd">
-        <div class="card-hd-left">
-          <span class="tag">SUPERCELL</span>
-          <span class="name">Supercell Store</span>
-        </div>
+        <div class="card-hd-left"><span class="tag">SUPERCELL</span><span class="name">Supercell Store</span></div>
         <span class="chevron">▼</span>
       </div>
       <div class="card-body">
-        <div class="row"><b>크로스게임 포인트</b>Brawl Stars 결제 포인트로 Clash of Clans 아이템 구매 가능 — 5개 게임 통합 포인트로 웹샵 플랫폼화</div>
-        <div class="row"><b>독점 아이템</b>웹샵에서만 구매 가능한 스킨·아이템 운영 → 앱스토어 이탈 유도</div>
+        <div class="row"><b>크로스게임 포인트</b>Brawl Stars 결제 포인트로 Clash of Clans 아이템 구매 가능 — 5개 게임 통합 포인트</div>
+        <div class="row"><b>독점 아이템</b>웹샵에서만 구매 가능한 스킨·아이템 → 앱스토어 이탈 유도</div>
         <div class="row"><b>Stamp Card</b>Gold Pass Stamp Card 완성 시 Book of Everything 무료 지급</div>
         <div class="row"><b>실적</b>Clash of Clans 누적 매출 $10B 돌파 · Brawl Stars 웹샵 트래픽 6개월 만에 2배 <sup class="ref">6</sup></div>
         <div class="card-footer"><a class="shop-link" href="https://store.supercell.com/" target="_blank">웹샵 바로가기 →</a></div>
       </div>
     </div>
-
     <div class="case-card c-mono" onclick="toggle(this)">
       <div class="card-hd">
-        <div class="card-hd-left">
-          <span class="tag">SCOPELY</span>
-          <span class="name">Monopoly GO — Tycoon Club</span>
-        </div>
+        <div class="card-hd-left"><span class="tag">SCOPELY</span><span class="name">Monopoly GO — Tycoon Club</span></div>
         <span class="chevron">▼</span>
       </div>
       <div class="card-body">
-        <div class="row"><b>초대 전용 멤버십</b>1개월 이상 활동 + 보드 레벨 10 달성 시 초대 (구매 조건 없음) → 소속감·희소성 제공</div>
+        <div class="row"><b>초대 전용 멤버십</b>1개월 활동 + 보드 레벨 10 달성 시 초대 (구매 조건 없음) → 소속감·희소성 제공</div>
         <div class="row"><b>포인트 제도</b>$1 지출 시 약 65 Loyalty Point 적립 → 스티커팩·주사위 번들·독점 토큰 교환</div>
-        <div class="row"><b>이중 동기 구조</b>포인트 사용 시 90일 Tycoon Pass도 동시 진행 → 한 번 결제로 포인트 + 패스 보상 이중 획득</div>
-        <div class="row"><b>실적</b>앱 내 구매 매출은 정체, 전체 성장이 Tycoon Club(웹샵)에서 발생 <sup class="ref">7</sup></div>
+        <div class="row"><b>이중 동기 구조</b>포인트 사용 시 90일 Tycoon Pass도 동시 진행 → 한 번 결제로 포인트 + 패스 보상</div>
+        <div class="row"><b>실적</b>앱 내 구매 매출 정체, 전체 성장이 Tycoon Club(웹샵)에서 발생 <sup class="ref">7</sup></div>
         <div class="card-footer"><a class="shop-link" href="https://www.monopolygo.com/benefits" target="_blank">웹샵 바로가기 →</a></div>
       </div>
     </div>
-
     <div class="case-card c-plytk" onclick="toggle(this)">
       <div class="card-hd">
-        <div class="card-hd-left">
-          <span class="tag">PLAYTIKA</span>
-          <span class="name">Playtika DTC Platform</span>
-        </div>
+        <div class="card-hd-left"><span class="tag">PLAYTIKA</span><span class="name">Playtika DTC Platform</span></div>
         <span class="chevron">▼</span>
       </div>
       <div class="card-body">
         <div class="row"><b>CRM 개인화</b>유저 세그먼트별 맞춤 오퍼 자동 발송 — 구매 이력·플레이 패턴 분석 기반</div>
         <div class="row"><b>구독 패스</b>5개 게임 전반 월정액 구독 패스 운영 → 안정적 반복 수익 구조</div>
-        <div class="row"><b>실적</b>Q3 2025 DTC 매출 $209M (전체의 31%) · 장기 목표 40%로 상향 <sup class="ref">2</sup></div>
-        <div class="row"><b>특징</b>DTC 비중 상승이 전체 매출 총이익률 3%p 직접 개선 → 수익성 개선 효과 명확</div>
+        <div class="row"><b>실적</b>Q3 2025 DTC 매출 $209M (전체의 31%) · 장기 목표 40% <sup class="ref">2</sup></div>
+        <div class="row"><b>특징</b>DTC 비중 상승이 전체 총이익률 3%p 직접 개선</div>
         <div class="card-footer"><a class="shop-link" href="https://www.playtika.com" target="_blank">Playtika 공식 →</a></div>
       </div>
     </div>
-
   </div>
-
-  <div class="sub-hd">사례에서 도출되는 공통 핵심 장치</div>
+  <div class="sub-hd">공통 핵심 장치</div>
   <table class="itbl">
-    <tr><td>포인트 적립·교환</td><td>구매마다 포인트 지급 → 다른 아이템 교환 구조로 <b>이탈 방지 및 반복 구매 동기</b> 부여</td></tr>
+    <tr><td>포인트 적립·교환</td><td>구매마다 포인트 지급 → 아이템 교환 구조로 <b>이탈 방지 및 반복 구매 동기</b> 부여</td></tr>
     <tr><td>보너스 역진 설계</td><td>소액 구매에 더 높은 보너스율 → <b>첫 구매 장벽을 낮추고</b> 신규 과금 유저 저변 확대</td></tr>
     <tr><td>이중 동기 구조</td><td>구매 시 포인트도 쌓이고 패스도 진행 → <b>한 번의 결제로 두 가지 보상</b> 경험</td></tr>
     <tr><td>진입 조건 멤버십</td><td>구매 조건 없이 활동 조건만으로 초대 → <b>소속감·희소성 동시 제공</b></td></tr>
-    <tr><td>크로스 혜택</td><td>여러 게임/콘텐츠에 통용되는 포인트 → 웹샵 자체가 <b>플랫폼화</b></td></tr>
   </table>
 </div>
 
-<!-- 03. 전략 프레임워크 -->
-<div class="section">
+<!-- 03 -->
+<div class="section" id="s03">
   <div class="sec-hd"><span class="sec-num">03</span><span class="sec-title">전략 프레임워크 — 채널 역할 분담</span></div>
   <p class="lead">웹샵을 '결제 페이지'가 아닌 <b>CRM·라이브옵스 독립 플랫폼</b>으로 재정의하는 것이 출발점입니다.</p>
-  <div class="tw">
-    <table>
-      <thead><tr><th>채널</th><th>역할</th><th>타깃 유저</th><th>핵심 지표</th></tr></thead>
-      <tbody>
-        <tr><td>App Store / Google Play</td><td>신규 유저 확보, 게임 발견, 첫 결제</td><td>잠재·신규 유저</td><td>설치수, 첫 결제율</td></tr>
-        <tr><td>Web Shop</td><td>재방문·재구매·충성 유저 관리·매출 확대</td><td>기존·과금 유저</td><td>Capture Rate, 재방문율</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="tw"><table>
+    <thead><tr><th>채널</th><th>역할</th><th>타깃 유저</th><th>핵심 지표</th></tr></thead>
+    <tbody>
+      <tr><td>App Store / Google Play</td><td>신규 유저 확보, 게임 발견, 첫 결제</td><td>잠재·신규 유저</td><td>설치수, 첫 결제율</td></tr>
+      <tr><td>Web Shop</td><td>재방문·재구매·충성 유저 관리·매출 확대</td><td>기존·과금 유저</td><td>Capture Rate, 재방문율</td></tr>
+    </tbody>
+  </table></div>
   <div class="sub-hd">운영 3단계 모델</div>
-  <div class="tw">
-    <table>
-      <thead><tr><th>단계</th><th>목표</th><th>주요 수단</th><th>핵심 지표</th></tr></thead>
-      <tbody>
-        <tr><td><b>1단계 Discovery</b><br><span style="font-size:12px;color:var(--gray)">발견</span></td><td>웹샵 존재 인지<br>첫 방문 유도</td><td>커뮤니티·SNS 공지,<br>첫 방문 웰컴 보너스</td><td>방문자 수 (MAU 대비 %)</td></tr>
-        <tr><td><b>2단계 Conversion</b><br><span style="font-size:12px;color:var(--gray)">전환</span></td><td>방문자 → 구매자</td><td>전용 상품, 역진 보너스,<br>한정 패키지</td><td>전환율 목표 3~8%</td></tr>
-        <tr><td><b>3단계 Expansion</b><br><span style="font-size:12px;color:var(--gray)">확장</span></td><td>반복 구매<br>충성 유저 확보</td><td>포인트 제도, 멤버십,<br>CRM 개인화 오퍼</td><td>Capture Rate 10%→20%</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="tw"><table>
+    <thead><tr><th>단계</th><th>목표</th><th>주요 수단</th><th>핵심 지표</th></tr></thead>
+    <tbody>
+      <tr><td><b>1단계 Discovery</b></td><td>웹샵 인지·첫 방문</td><td>커뮤니티·SNS, 웰컴 보너스</td><td>방문자 수 (MAU 대비 %)</td></tr>
+      <tr><td><b>2단계 Conversion</b></td><td>방문자 → 구매자</td><td>전용 상품, 역진 보너스</td><td>전환율 목표 3~8%</td></tr>
+      <tr><td><b>3단계 Expansion</b></td><td>반복 구매·충성 유저</td><td>포인트, 멤버십, CRM 오퍼</td><td>Capture Rate 10%→20%</td></tr>
+    </tbody>
+  </table></div>
 </div>
 
-<!-- 04. 하이브리드 운영 전략 -->
-<div class="section">
+<!-- 04 -->
+<div class="section" id="s04">
   <div class="sec-hd"><span class="sec-num">04</span><span class="sec-title">자사 웹샵 + Xsolla 하이브리드 운영 전략</span></div>
-  <p class="lead">매출이 집중되는 핵심 시장(KR·JP·TW·US)은 자사 웹샵으로 직접 운영해 데이터와 경험을 축적하고, 대응 비용이 높은 나머지 글로벌 시장은 Xsolla 인프라로 커버하는 이원화 구조입니다.</p>
-
+  <p class="lead">핵심 시장(KR·JP·TW·US)은 자사 웹샵으로 직접 운영해 데이터와 경험을 축적하고, 대응 비용이 높은 나머지 글로벌 시장은 Xsolla 인프라로 커버하는 이원화 구조입니다.</p>
   <div class="hmap">
     <div class="hmap-box self">
       <div class="hmap-title"><span class="hmap-tag">자사 직접 운영</span> 핵심 4개 시장</div>
-      <span class="region">🇰🇷 한국</span>
-      <span class="region">🇯🇵 일본</span>
-      <span class="region">🇹🇼 대만</span>
-      <span class="region">🇺🇸 미국</span>
-      <p>매출 비중이 높고 유저 규모가 큰 시장. 자사 웹샵에서 직접 운영하여 유저 데이터·구매 패턴·CRM 인사이트를 내재화. 현지 결제(KR: 카드·네이버페이, JP: MerPay·콘비니, TW: ATM·편의점, US: 카드·PayPal) 직접 연동 또는 제한적 파트너 활용.</p>
+      <span class="region">🇰🇷 한국</span><span class="region">🇯🇵 일본</span><span class="region">🇹🇼 대만</span><span class="region">🇺🇸 미국</span>
+      <p>유저 데이터·구매 패턴·CRM 인사이트를 내재화. 현지 결제(KR: 카드·네이버페이, JP: MerPay·콘비니, TW: ATM·편의점, US: 카드·PayPal) 직접 연동.</p>
     </div>
     <div class="hmap-box xsolla">
       <div class="hmap-title"><span class="hmap-tag">Xsolla 위탁 운영</span> 나머지 글로벌</div>
-      <span class="region">🌏 동남아</span>
-      <span class="region">🌍 유럽</span>
-      <span class="region">🌎 중남미</span>
-      <span class="region">🌍 중동·아프리카</span>
-      <p>국가별 결제사 계약·연동·운영 부담이 높은 시장. Xsolla의 200개국+ 결제 인프라 활용으로 즉시 커버. 현지 결제수단(ShopeePay, M-Pesa 등) 자동 지원. 운영 리소스 최소화하면서 글로벌 매출 기회 확보.</p>
+      <span class="region">🌏 동남아</span><span class="region">🌍 유럽</span><span class="region">🌎 중남미</span><span class="region">🌍 중동·아프리카</span>
+      <p>Xsolla 200개국+ 결제 인프라 활용으로 즉시 커버. 현지 결제수단(ShopeePay, M-Pesa 등) 자동 지원. 운영 리소스 최소화.</p>
     </div>
   </div>
-
-  <div class="sub-hd">시장별 운영 전략 상세</div>
-  <div class="tw">
-    <table>
-      <thead><tr><th>시장</th><th>운영 주체</th><th>현지 결제 수단</th><th>핵심 전략</th><th>비고</th></tr></thead>
-      <tbody>
-        <tr><td class="hi">🇰🇷 한국</td><td class="ok">자사 웹샵</td><td>카드, 네이버페이, 카카오페이, 통신사 결제</td><td>포인트·이벤트 선행 운영, 2026.12 정책 변화 대비 인게임 연동 준비</td><td>현재 운영 중 — 기능 고도화 우선</td></tr>
-        <tr><td class="hi">🇯🇵 일본</td><td class="ok">자사 웹샵</td><td>MerPay, PayPay, 편의점 결제, 크레딧카드</td><td>콘텐츠 현지화, 시즌 이벤트 일본 공휴일 연계</td><td>모바일 게임 매출 세계 2~3위 시장</td></tr>
-        <tr><td class="hi">🇹🇼 대만</td><td class="ok">자사 웹샵</td><td>LINE Pay, 편의점 결제, ATM, 크레딧카드</td><td>LINE 생태계 연계 마케팅 활용 가능</td><td>LINE Games IP 친숙도 활용</td></tr>
-        <tr><td class="hi">🇺🇸 미국</td><td class="ok">자사 웹샵 (검토)</td><td>크레딧카드, PayPal, Affirm(BNPL)</td><td>Epic vs Apple 판결 이후 외부 결제 환경 유리, D2C Capture Rate 20%+ 시장</td><td>리소스 여건 따라 Xsolla 혼합 가능</td></tr>
-        <tr><td>🌏 동남아</td><td class="warn">Xsolla</td><td>ShopeePay, GrabPay, GoPay, FPX</td><td>현지 결제 수단 자동 지원, 지역별 가격 정책</td><td>디지털 지갑 사용률 75%+</td></tr>
-        <tr><td>🌍 유럽</td><td class="warn">Xsolla</td><td>Bizum, Swish, Satispay, Klarna</td><td>GDPR 대응 포함 일괄 처리</td><td>DMA로 외부 결제 허용 확대</td></tr>
-        <tr><td>🌎 중남미</td><td class="warn">Xsolla</td><td>Mercado Pago, PIX(브라질)</td><td>PPP 기반 가격 현지화</td><td>구독형 결제 지원 필요</td></tr>
-        <tr><td>🌍 중동·아프리카</td><td class="warn">Xsolla</td><td>Zain Cash, Tamara, M-Pesa</td><td>모바일 머니 중심 결제 대응</td><td>직접 대응 비용 대비 효율 낮음</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="sub-hd">하이브리드 구조 — 고려 사항</div>
-  <div class="tw">
-    <table>
-      <thead><tr><th>구분</th><th>자사 직접 운영</th><th>Xsolla 위탁</th></tr></thead>
-      <tbody>
-        <tr><td>데이터 내재화</td><td class="ok">유저 구매 데이터 직접 보유 · CRM 활용 가능</td><td class="warn">데이터 공유 범위 계약 조건에 따라 제한될 수 있음</td></tr>
-        <tr><td>운영 리소스</td><td class="warn">결제 연동·CS·법규 대응 등 자체 투입 필요</td><td class="ok">인프라·CS·현지 법규 대응 일괄 위탁 가능</td></tr>
-        <tr><td>수수료</td><td class="ok">자체 PG 수수료만 발생 (플랫폼 수수료 없음)</td><td class="warn">Xsolla 수수료 발생 (매출의 일정 %)</td></tr>
-        <tr><td>현지 결제 수단</td><td class="warn">시장별 개별 계약 필요</td><td class="ok">200개국+ 결제 수단 즉시 활용 가능 <sup class="ref">8</sup></td></tr>
-        <tr><td>브랜드 경험</td><td class="ok">UI·UX·이벤트 완전 자유 설계</td><td class="warn">Xsolla 플랫폼 내 커스터마이징 범위 제한</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="sub-hd">시장별 운영 전략</div>
+  <div class="tw"><table>
+    <thead><tr><th>시장</th><th>운영 주체</th><th>현지 결제 수단</th><th>핵심 전략</th></tr></thead>
+    <tbody>
+      <tr><td class="hi">🇰🇷 한국</td><td class="ok">자사 웹샵</td><td>카드, 네이버페이, 카카오페이, 통신사</td><td>포인트·이벤트 고도화, 2026.12 정책 변화 대비 인게임 연동 준비</td></tr>
+      <tr><td class="hi">🇯🇵 일본</td><td class="ok">자사 웹샵</td><td>MerPay, PayPay, 편의점 결제</td><td>현지화, 일본 공휴일 연계 시즌 이벤트</td></tr>
+      <tr><td class="hi">🇹🇼 대만</td><td class="ok">자사 웹샵</td><td>LINE Pay, 편의점, ATM</td><td>LINE 생태계 연계 마케팅 활용</td></tr>
+      <tr><td class="hi">🇺🇸 미국</td><td class="ok">자사 웹샵 (검토)</td><td>크레딧카드, PayPal, Affirm</td><td>D2C Capture Rate 20%+ 시장 — 리소스 여건 따라 Xsolla 혼합 가능</td></tr>
+      <tr><td>🌏 동남아</td><td class="warn">Xsolla</td><td>ShopeePay, GrabPay, GoPay</td><td>현지 결제 자동 지원, 지역별 가격 정책</td></tr>
+      <tr><td>🌍 유럽</td><td class="warn">Xsolla</td><td>Bizum, Swish, Satispay</td><td>GDPR 대응 포함 일괄 처리</td></tr>
+      <tr><td>🌎 중남미</td><td class="warn">Xsolla</td><td>Mercado Pago, PIX</td><td>PPP 기반 가격 현지화</td></tr>
+      <tr><td>🌍 중동·아프리카</td><td class="warn">Xsolla</td><td>Zain Cash, Tamara, M-Pesa</td><td>모바일 머니 중심 결제 대응</td></tr>
+    </tbody>
+  </table></div>
+  <div class="sub-hd">자사 vs Xsolla 비교</div>
+  <div class="tw"><table>
+    <thead><tr><th>구분</th><th>자사 직접 운영</th><th>Xsolla 위탁</th></tr></thead>
+    <tbody>
+      <tr><td>데이터 내재화</td><td class="ok">유저 구매 데이터 직접 보유 · CRM 활용</td><td class="warn">데이터 공유 범위 계약 조건에 따라 제한</td></tr>
+      <tr><td>운영 리소스</td><td class="warn">결제 연동·CS·법규 대응 자체 투입 필요</td><td class="ok">인프라·CS·현지 법규 일괄 위탁 가능</td></tr>
+      <tr><td>수수료</td><td class="ok">자체 PG 수수료만 발생</td><td class="warn">Xsolla 수수료 발생</td></tr>
+      <tr><td>현지 결제 수단</td><td class="warn">시장별 개별 계약 필요</td><td class="ok">200개국+ 즉시 활용 <sup class="ref">8</sup></td></tr>
+      <tr><td>브랜드 경험</td><td class="ok">UI·UX·이벤트 완전 자유 설계</td><td class="warn">Xsolla 플랫폼 내 커스터마이징 범위 제한</td></tr>
+    </tbody>
+  </table></div>
   <div class="callout warn">
     <div class="badge">핵심 판단</div>
-    <div class="body">핵심 시장에서 쌓은 웹샵 운영 경험·유저 데이터·CRM 인사이트가 Xsolla 활용 시장에도 상품 기획·가격 정책의 기준이 됩니다. 자사 운영 먼저 고도화한 후 글로벌 확장 순서가 권장됩니다.</div>
+    <div class="body">자사 운영에서 쌓은 유저 데이터·CRM 인사이트가 Xsolla 활용 시장의 상품 기획·가격 정책 기준이 됩니다. 자사 운영 고도화 먼저, 글로벌 확장은 그 다음 순서가 권장됩니다.</div>
   </div>
-
-  <div class="sub-hd">한국 정책 변화 대비 (2026년 12월)</div>
-  <p class="lead" style="margin-bottom:0">현재 앱스토어·구글플레이 정책상 게임 내 직접 링크 노출이 제한되나, 2026년 12월 정책 변화 이후 인게임 직접 유도가 허용될 가능성이 있습니다. 지금부터 웹샵 운영 경험과 유저 데이터를 축적해두면, 정책 허용 시점에 즉시 풀 운영으로 전환할 수 있습니다.</p>
 </div>
 
-<!-- 05. 상품·이벤트·포인트 -->
-<div class="section">
+<!-- 05 -->
+<div class="section" id="s05">
   <div class="sec-hd"><span class="sec-num">05</span><span class="sec-title">상품 구성 · 이벤트 · 포인트 제도</span></div>
-  <p class="lead">타사 사례에서 공통으로 확인되는 것은, <b>유저가 웹샵을 다시 방문할 이유</b>를 다층적으로 설계한다는 점입니다. 단순 할인이 아닌 포인트·이벤트·멤버십이 맞물리는 구조입니다.</p>
-
   <div class="sub-hd">상품 유형별 구성</div>
-  <div class="tw">
-    <table>
-      <thead><tr><th>상품 유형</th><th>설명</th><th>참고 사례</th><th>기대 효과</th></tr></thead>
-      <tbody>
-        <tr><td>웹샵 독점 아이템</td><td>앱에서 구매 불가한 전용 스킨·코스튬</td><td>Supercell Store</td><td>방문 필수성 창출</td></tr>
-        <tr><td>역진 보너스 패키지</td><td>소액 구매에 높은 보너스율 → 고액에 낮은 보너스율</td><td>Pokemon GO (+7~10%)</td><td>첫 구매 장벽 완화</td></tr>
-        <tr><td>시즌·이벤트 한정 상품</td><td>업데이트·명절 연계 기간 한정 판매</td><td>공통</td><td>타이밍 구매 유도</td></tr>
-        <tr><td>결제 금액별 추가 보너스</td><td>일정 금액 이상 구매 시 추가 재화·아이템</td><td>공통</td><td>객단가 상승</td></tr>
-        <tr><td>웹샵 구독 패스</td><td>월정액으로 매일 재화 + 전용 할인 혜택</td><td>Playtika</td><td>안정적 반복 수익</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="sub-hd">GM 웹샵 포인트 제도 현황 및 고도화 방향</div>
-  <p class="lead">GM 웹샵에는 이미 포인트 제도가 운영 중입니다. 적립율(10%)은 경쟁력 있는 수준이나, <b>사용처 다양화·유효기간 연장·소멸 알림 활용</b> 등으로 제도의 실효성을 높일 수 있습니다.</p>
+  <div class="tw"><table>
+    <thead><tr><th>상품 유형</th><th>설명</th><th>참고 사례</th><th>기대 효과</th></tr></thead>
+    <tbody>
+      <tr><td>웹샵 독점 아이템</td><td>앱에서 구매 불가한 전용 스킨·코스튬</td><td>Supercell Store</td><td>방문 필수성 창출</td></tr>
+      <tr><td>역진 보너스 패키지</td><td>소액 구매에 높은 보너스율 → 고액에 낮은 보너스율</td><td>Pokemon GO (+7~10%)</td><td>첫 구매 장벽 완화</td></tr>
+      <tr><td>시즌·이벤트 한정 상품</td><td>업데이트·명절 연계 기간 한정 판매</td><td>공통 (GM 웹샵 이력 있음)</td><td>타이밍 구매 유도</td></tr>
+      <tr><td>결제 금액별 추가 보너스</td><td>일정 금액 이상 구매 시 추가 재화·아이템</td><td>공통</td><td>객단가 상승</td></tr>
+      <tr><td>웹샵 구독 패스</td><td>월정액으로 매일 재화 + 전용 할인 혜택</td><td>Playtika</td><td>안정적 반복 수익</td></tr>
+    </tbody>
+  </table></div>
+  <div class="sub-hd">GM 웹샵 포인트 제도 — 현황 및 고도화 방향</div>
+  <p class="lead">적립율 10%는 경쟁력 있는 수준입니다. <b>사용처 다양화·유효기간 연장·소멸 알림 활용</b>으로 실효성을 높일 수 있습니다.</p>
   <table class="itbl">
-    <tr><td>현행 적립</td><td>실결제 금액의 <b>10%</b> 적립 (포인트·쿠폰·할인 사용분 제외). 상품 수령 후 적립 (결제 후 7일 이내 우편함 수령 조건)</td></tr>
-    <tr><td>현행 사용</td><td>1P = 1원, 1,000P 이상부터 100P 단위 사용. 결제금액의 <b>최대 50%</b>까지 포인트 결제 가능</td></tr>
+    <tr><td>현행 적립</td><td>실결제 금액의 <b>10%</b> 적립. 상품 수령 후 적립 (결제 후 7일 이내 우편함 수령 조건)</td></tr>
+    <tr><td>현행 사용</td><td>1P = 1원, 1,000P 이상부터 100P 단위. 결제금액의 <b>최대 50%</b>까지 포인트 결제 가능</td></tr>
     <tr><td>현행 유효기간</td><td>적립일로부터 <b>60일</b> — 연장 검토 권장 (90~180일)</td></tr>
-    <tr><td>개선 방향 ①</td><td>포인트 교환 카탈로그 추가 — 상품 구매 외 전용 아이템·쿠폰으로 교환 가능하게 하여 사용 동기 다양화 (Pokemon GO, Monopoly GO 구조)</td></tr>
-    <tr><td>개선 방향 ②</td><td>소멸 임박 알림(D-14, D-7) 이메일·푸시 발송 → 휴면 유저 재방문 트리거로 적극 활용</td></tr>
-    <tr><td>개선 방향 ③</td><td>데일리 로그인 소량 적립 추가 — 구매 없이도 방문만으로 포인트 소량 지급 → 방문 습관 형성</td></tr>
-    <tr><td>개선 방향 ④</td><td>패스 연동 구조 검토 — 포인트 누적·사용 시 별도 패스 진행 → 한 번 결제로 포인트 + 패스 보상 이중 획득 (Monopoly GO 이중 동기 구조)</td></tr>
+    <tr><td>개선 ①</td><td>포인트 교환 카탈로그 추가 — 전용 아이템·쿠폰 교환 가능하게 하여 사용 동기 다양화</td></tr>
+    <tr><td>개선 ②</td><td>소멸 임박 알림(D-14, D-7) 발송 → 휴면 유저 재방문 트리거</td></tr>
+    <tr><td>개선 ③</td><td>데일리 로그인 소량 적립 — 방문만으로 포인트 소량 지급 → 방문 습관 형성</td></tr>
+    <tr><td>개선 ④</td><td>패스 연동 구조 검토 — 포인트 사용 시 패스도 동시 진행 (Monopoly GO 이중 동기 구조)</td></tr>
   </table>
-
   <div class="sub-hd">이벤트 유형별 설계</div>
-  <div class="tw">
-    <table>
-      <thead><tr><th>이벤트</th><th>내용</th><th>효과</th></tr></thead>
-      <tbody>
-        <tr><td><b>데일리 로그인 보상</b></td><td>웹샵 접속만으로 매일 소량 아이템·재화 지급</td><td>방문 습관 형성 · 활성 유저 +200% <sup class="ref">4</sup></td></tr>
-        <tr><td><b>Stamp Card</b></td><td>N회 구매 완료 시 보너스 상품 지급 (Supercell 사례)</td><td>반복 구매 동기 · 이탈 방지</td></tr>
-        <tr><td>첫 구매 웰컴 오퍼</td><td>첫 방문·첫 구매 시 한정 할인 or 추가 보너스</td><td>첫 전환율 극대화</td></tr>
-        <tr><td>시즌 세일</td><td>명절·업데이트·기념일 연계 기간 한정 할인</td><td>구매 의향 집중 기간 활용</td></tr>
-        <tr><td>복귀 유저 특가</td><td>장기 미방문 유저 재방문 시 전용 혜택 자동 발동</td><td>휴면 유저 재활성화</td></tr>
-      </tbody>
-    </table>
-  </div>
-
+  <div class="tw"><table>
+    <thead><tr><th>이벤트</th><th>내용</th><th>효과</th></tr></thead>
+    <tbody>
+      <tr><td><b>데일리 로그인 보상</b></td><td>웹샵 접속만으로 매일 소량 아이템·재화 지급</td><td>방문 습관 형성 · 활성 유저 +200% <sup class="ref">4</sup></td></tr>
+      <tr><td><b>Stamp Card</b></td><td>N회 구매 완료 시 보너스 상품 지급</td><td>반복 구매 동기 · 이탈 방지</td></tr>
+      <tr><td>첫 구매 웰컴 오퍼</td><td>첫 방문·구매 시 한정 할인 or 추가 보너스</td><td>첫 전환율 극대화</td></tr>
+      <tr><td>시즌 세일</td><td>명절·업데이트 연계 기간 한정 할인</td><td>구매 집중 기간 활용</td></tr>
+      <tr><td>복귀 유저 특가</td><td>장기 미방문 유저 재방문 시 전용 혜택 자동 발동</td><td>휴면 유저 재활성화</td></tr>
+    </tbody>
+  </table></div>
   <div class="kpi-row c3" style="margin-top:18px">
     <div class="kpi green"><div class="val">+200%</div><div class="lbl">데일리 로그인 보상 도입 시<br>활성 유저 수 증가</div><div class="note">글로벌 운영 데이터 <sup class="ref">4</sup></div></div>
     <div class="kpi green"><div class="val">+50%</div><div class="lbl">데일리 로그인 보상 도입 시<br>월간 구매 횟수 증가</div><div class="note">글로벌 운영 데이터 <sup class="ref">4</sup></div></div>
@@ -518,8 +549,8 @@
   <div class="note">위 수치는 Xsolla 자사 발표 기준으로 독립 검증이 없습니다. 참고 수준으로 활용 권장.</div>
 </div>
 
-<!-- 06. 마케팅 -->
-<div class="section">
+<!-- 06 -->
+<div class="section" id="s06">
   <div class="sec-hd"><span class="sec-num">06</span><span class="sec-title">마케팅 전략</span></div>
   <div class="sub-hd">국내 채널 전략</div>
   <p class="lead">앱스토어·구글플레이 정책상 게임 내 외부 링크 직접 노출에 제한이 있으므로, 외부 채널 중심으로 웹샵 인지도를 구축합니다.</p>
@@ -528,9 +559,7 @@
     <tr><td>SNS<br>(유튜브·틱톡·인스타)</td><td>'웹샵에서만 살 수 있는 것' 소개 형식 콘텐츠 / 신상품·이벤트 공지 정기 발행</td></tr>
     <tr><td>이메일·푸시 알림</td><td>웹샵 오픈·이벤트·신상품·포인트 소멸 임박 안내 발송</td></tr>
   </table>
-
   <div class="sub-hd">크리에이터 연계 (서브 채널)</div>
-  <p class="lead">게임 커뮤니티와 밀착된 마이크로 크리에이터와 소규모 협업이 현실적입니다.</p>
   <table class="itbl">
     <tr><td>전용 코드</td><td>크리에이터별 고유 코드 발급 → 코드 사용 구매 시 유저·크리에이터 양측 혜택 제공</td></tr>
     <tr><td>운영 방식</td><td>소규모 파일럿(3~5명) → 전환율 데이터 확인 후 확대 여부 결정</td></tr>
@@ -538,42 +567,41 @@
   <div class="note">크리에이터 마케팅은 웹샵 기본 구조(포인트·이벤트·채널) 안정화 이후 단계적으로 검토하는 것이 적합합니다.</div>
 </div>
 
-<!-- 07. KPI -->
-<div class="section">
+<!-- 07 -->
+<div class="section" id="s07">
   <div class="sec-hd"><span class="sec-num">07</span><span class="sec-title">운영 KPI 설계</span></div>
-  <div class="tw">
-    <table>
-      <thead><tr><th>단계</th><th>지표</th><th>목표 기준</th></tr></thead>
-      <tbody>
-        <tr><td>Discovery</td><td>웹샵 방문자 수 (MAU 대비)</td><td>게임 MAU의 10% 이상</td></tr>
-        <tr><td>Discovery</td><td>신규 방문 유입 경로 비중</td><td>커뮤니티·SNS 채널별 분류·추적</td></tr>
-        <tr><td>Conversion</td><td>방문→구매 전환율</td><td>3~8% (업계 평균)</td></tr>
-        <tr><td>Conversion</td><td>객단가 (ARPPU)</td><td>앱스토어 동등 수준 이상</td></tr>
-        <tr><td>Expansion</td><td>포인트 적립 유저 비율</td><td>웹샵 구매 유저의 60% 이상</td></tr>
-        <tr><td>Expansion</td><td>30일 재방문율</td><td>30% 이상</td></tr>
-        <tr><td>전체</td><td>웹샵 Capture Rate</td><td>10% → 15% → 20% 단계적 달성</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="tw"><table>
+    <thead><tr><th>단계</th><th>지표</th><th>목표 기준</th></tr></thead>
+    <tbody>
+      <tr><td>Discovery</td><td>웹샵 방문자 수 (MAU 대비)</td><td>게임 MAU의 10% 이상</td></tr>
+      <tr><td>Discovery</td><td>신규 방문 유입 경로 비중</td><td>커뮤니티·SNS 채널별 분류·추적</td></tr>
+      <tr><td>Conversion</td><td>방문→구매 전환율</td><td>3~8% (업계 평균)</td></tr>
+      <tr><td>Conversion</td><td>객단가 (ARPPU)</td><td>앱스토어 동등 수준 이상</td></tr>
+      <tr><td>Expansion</td><td>포인트 적립 유저 비율</td><td>웹샵 구매 유저의 60% 이상</td></tr>
+      <tr><td>Expansion</td><td>30일 재방문율</td><td>30% 이상</td></tr>
+      <tr><td>전체</td><td>웹샵 Capture Rate</td><td>10% → 15% → 20% 단계적 달성</td></tr>
+    </tbody>
+  </table></div>
 </div>
 
-<!-- 08. 로드맵 -->
-<div class="section">
+<!-- 08 -->
+<div class="section" id="s08">
   <div class="sec-hd"><span class="sec-num">08</span><span class="sec-title">실행 로드맵</span></div>
   <div class="phases">
     <div class="phase">
       <div class="ph-hd"><div class="ph-label">PHASE 1</div><div class="ph-name">자사 웹샵 고도화</div><div class="ph-period">1~2개월</div></div>
       <div class="ph-body"><ul>
-        <li>웹샵 독점 아이템·패키지 재설계</li>
+        <li>이벤트 상품 운영 재개</li>
         <li>데일리 로그인 보상 도입</li>
         <li>첫 구매 웰컴 오퍼 (역진 보너스)</li>
+        <li>포인트 소멸 임박 알림 발송 시작</li>
         <li>공식 커뮤니티 웹샵 채널 상설화</li>
       </ul></div>
     </div>
     <div class="phase">
       <div class="ph-hd"><div class="ph-label">PHASE 2</div><div class="ph-name">포인트·이벤트 + JP·TW 확장</div><div class="ph-period">3~4개월</div></div>
       <div class="ph-body"><ul>
-        <li>포인트 적립·교환 제도 도입</li>
+        <li>포인트 유효기간 연장 + 교환 카탈로그 추가</li>
         <li>Stamp Card 기능 구현</li>
         <li>JP·TW 현지 결제 연동 및 현지화</li>
         <li>CRM 세그먼트별 맞춤 오퍼 테스트</li>
@@ -585,23 +613,23 @@
         <li>Xsolla 연동으로 나머지 글로벌 커버</li>
         <li>US 웹샵 운영 여부 최종 결정</li>
         <li>VIP·멤버십 제도 도입</li>
-        <li>한국 정책 변화(2026.12) 대비 인게임 연동 준비</li>
+        <li>한국 정책 변화(2026.12) 인게임 연동 준비</li>
       </ul></div>
     </div>
   </div>
 </div>
 
-<!-- 09. 핵심 요약 -->
-<div class="section">
+<!-- 09 -->
+<div class="section" id="s09">
   <div class="sec-hd"><span class="sec-num">09</span><span class="sec-title">핵심 요약</span></div>
   <p class="lead" style="font-weight:700;color:var(--navy);font-size:15px">웹샵 성패는 '얼마나 싸게 파느냐'가 아니라 '유저가 왜 다시 오는가'에 달려 있습니다.</p>
   <div class="sum-grid">
     <div class="sum-card"><div class="sn">POINT 01</div><div class="st">채널 재정의</div><div class="sb">웹샵 = 결제 페이지가 아닌 CRM·라이브옵스 독립 플랫폼</div></div>
-    <div class="sum-card"><div class="sn">POINT 02</div><div class="st">독점성 확보</div><div class="sb">웹샵에서만 살 수 있는 상품이 있어야 방문 이유가 생긴다 (Supercell 사례)</div></div>
-    <div class="sum-card"><div class="sn">POINT 03</div><div class="st">이중 동기 구조</div><div class="sb">한 번 결제 시 포인트 + 패스 동시 진행 — Monopoly GO Tycoon Club 구조 참고</div></div>
+    <div class="sum-card"><div class="sn">POINT 02</div><div class="st">이벤트 상품 재개 최우선</div><div class="sb">중단 이후 매출 급감과 시기 겹침 — 가장 직접적인 매출 회복 레버</div></div>
+    <div class="sum-card"><div class="sn">POINT 03</div><div class="st">포인트 제도 고도화</div><div class="sb">적립율 10%는 경쟁력 있음 — 유효기간 연장·교환 카탈로그·소멸 알림으로 실효성 강화</div></div>
     <div class="sum-card"><div class="sn">POINT 04</div><div class="st">첫 진입 장벽 낮추기</div><div class="sb">소액 구매에 높은 보너스율 — Pokemon GO 역진 설계로 신규 과금 유저 확대</div></div>
     <div class="sum-card"><div class="sn">POINT 05</div><div class="st">하이브리드 운영</div><div class="sb">KR·JP·TW·US 자사 직접 운영 → 나머지는 Xsolla로 글로벌 커버</div></div>
-    <div class="sum-card"><div class="sn">POINT 06</div><div class="st">선점 전략</div><div class="sb">한국 정책 변화(2026.12) 전 운영 경험 축적 = 향후 경쟁 우위 확보</div></div>
+    <div class="sum-card"><div class="sn">POINT 06</div><div class="st">선점 전략</div><div class="sb">한국 정책 변화(2026.12) 전 운영 경험 축적 = 향후 경쟁 우위</div></div>
   </div>
 </div>
 
@@ -609,26 +637,53 @@
 <div class="footnotes">
   <h4>참고 출처</h4>
   <ol>
-    <li>Neon Commerce — How the Top Mobile Games Run Their Webshops (2025) — <a href="https://www.neonpay.com/blog/how-the-top-mobile-games-run-their-webshops" target="_blank">neonpay.com</a></li>
+    <li>Neon Commerce — How the Top Mobile Games Run Their Webshops — <a href="https://www.neonpay.com/blog/how-the-top-mobile-games-run-their-webshops" target="_blank">neonpay.com</a></li>
     <li>Playtika Q3 2025 Earnings Release — <a href="https://www.globenewswire.com/news-release/2025/11/06/3182335/0/en/Playtika-Holding-Corp-Reports-Q3-2025-Financial-Results.html" target="_blank">globenewswire.com</a></li>
     <li>Stillfront Group Q3 2025 Interim Report — <a href="https://www.stillfront.com/en/stillfronts-interim-report-july-september-2025/" target="_blank">stillfront.com</a></li>
-    <li>Xsolla Web Shop Best Practices — <a href="https://xsolla.com/blog/ecommerce-best-practices-for-gamers" target="_blank">xsolla.com</a> <em>※ 자사 마케팅 자료 기준, 독립 검증 없음. 참고 수준으로 활용 권장</em></li>
-    <li>Pokemon GO Web Store / Scopely 매출 데이터 — <a href="https://www.neonpay.com/blog/how-the-top-mobile-games-run-their-webshops" target="_blank">neonpay.com</a></li>
-    <li>Supercell Best Days Announcement — <a href="https://supercell.com/en/news/best-days/" target="_blank">supercell.com</a></li>
-    <li>Hasbro Monopoly GO Licensing Revenue Analysis — <a href="https://mobilegamer.biz/hasbro-makes-about-10m-a-month-from-monopoly-go/" target="_blank">mobilegamer.biz</a></li>
-    <li>Xsolla Global Payment Expansion (2026) — <a href="https://www.businesswire.com/news/home/20260303816373/en/Xsolla-Expands-Global-Payment-Coverage-Across-18-Markets" target="_blank">businesswire.com</a></li>
+    <li>Xsolla Web Shop Best Practices — <a href="https://xsolla.com/blog/ecommerce-best-practices-for-gamers" target="_blank">xsolla.com</a> <em>※ 자사 마케팅 자료 기준, 독립 검증 없음</em></li>
+    <li>Pokemon GO Web Store 매출 데이터 — <a href="https://www.neonpay.com/blog/how-the-top-mobile-games-run-their-webshops" target="_blank">neonpay.com</a></li>
+    <li>Supercell Best Days — <a href="https://supercell.com/en/news/best-days/" target="_blank">supercell.com</a></li>
+    <li>Hasbro Monopoly GO Licensing Revenue — <a href="https://mobilegamer.biz/hasbro-makes-about-10m-a-month-from-monopoly-go/" target="_blank">mobilegamer.biz</a></li>
+    <li>Xsolla Global Payment Expansion 2026 — <a href="https://www.businesswire.com/news/home/20260303816373/en/Xsolla-Expands-Global-Payment-Coverage-Across-18-Markets" target="_blank">businesswire.com</a></li>
   </ol>
 </div>
-
 <div class="footer">게임사 웹샵 런칭 및 운영 전략 · 2026.06 · 글로벌 주요 게임사 사례 및 D2C 시장 데이터 기반</div>
 
-</div>
+</div><!-- /container -->
+</div><!-- /main -->
 
 <script>
-function toggle(card) {
-  card.classList.toggle('open');
-}
-</script>
+// 카드 토글
+function toggle(card) { card.classList.toggle('open'); }
 
+// 모바일 사이드바
+document.getElementById('sbToggle').addEventListener('click', function() {
+  document.getElementById('sidebar').classList.toggle('open');
+});
+// 사이드바 외부 클릭 시 닫기 (모바일)
+document.addEventListener('click', function(e) {
+  const sb = document.getElementById('sidebar');
+  const btn = document.getElementById('sbToggle');
+  if (window.innerWidth <= 768 && sb.classList.contains('open') && !sb.contains(e.target) && e.target !== btn) {
+    sb.classList.remove('open');
+  }
+});
+
+// 스크롤 시 현재 섹션 하이라이트
+const sections = document.querySelectorAll('.section[id]');
+const links = document.querySelectorAll('.sb-link');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.sb-link[href="#' + entry.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>
