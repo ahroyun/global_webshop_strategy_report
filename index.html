@@ -429,7 +429,7 @@
   <div class="case-grid">
 
     <!-- 국내 1: 넥슨 메이플스토리M -->
-    <div class="case-card c-nexon" onclick="toggle(this)">
+    <div class="case-card c-nexon" onclick="toggleCard(this)">
       <div class="card-hd">
         <div class="card-hd-left"><span class="tag">NEXON 🇰🇷</span><span class="name">넥슨 메이플스토리M 상점</span></div>
         <span class="chevron">▼</span>
@@ -449,7 +449,7 @@
     </div>
 
     <!-- 국내 2: 넷마블 -->
-    <div class="case-card c-nmar" onclick="toggle(this)">
+    <div class="case-card c-nmar" onclick="toggleCard(this)">
       <div class="card-hd">
         <div class="card-hd-left"><span class="tag">NETMARBLE 🇰🇷</span><span class="name">일곱개의대죄: GRAND CROSS 모험가 상점</span></div>
         <span class="chevron">▼</span>
@@ -471,7 +471,7 @@
     </div>
 
     <!-- 해외 1: Pokemon GO -->
-    <div class="case-card c-pogo" onclick="toggle(this)">
+    <div class="case-card c-pogo" onclick="toggleCard(this)">
       <div class="card-hd">
         <div class="card-hd-left"><span class="tag">SCOPELY 🌏</span><span class="name">Pokemon GO Web Store</span></div>
         <span class="chevron">▼</span>
@@ -490,7 +490,7 @@
     </div>
 
     <!-- 해외 2: Supercell -->
-    <div class="case-card c-super" onclick="toggle(this)">
+    <div class="case-card c-super" onclick="toggleCard(this)">
       <div class="card-hd">
         <div class="card-hd-left"><span class="tag">SUPERCELL 🌏</span><span class="name">Supercell Store</span></div>
         <span class="chevron">▼</span>
@@ -831,7 +831,6 @@
               : ` 비중: ${ctx.parsed.y}%`
           }
         },
-        annotation: {}
       },
       scales: {
         x: { grid: { display: false }, ticks: { font: { size: 12 } } },
@@ -854,7 +853,35 @@
 })();
 
 // 카드 토글
-function toggle(card) { card.classList.toggle('open'); }
+function toggleCard(card) { card.classList.toggle('open'); }
 
 // 모바일 사이드바
-document.getElement
+document.getElementById('sbToggle').addEventListener('click', function() {
+  document.getElementById('sidebar').classList.toggle('open');
+});
+document.addEventListener('click', function(e) {
+  const sb = document.getElementById('sidebar');
+  const btn = document.getElementById('sbToggle');
+  if (window.innerWidth <= 768 && sb.classList.contains('open') && !sb.contains(e.target) && e.target !== btn) {
+    sb.classList.remove('open');
+  }
+});
+
+// 스크롤 시 현재 섹션 하이라이트
+const sections = document.querySelectorAll('.section[id]');
+const links = document.querySelectorAll('.sb-link');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.sb-link[href="#' + entry.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
