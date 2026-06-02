@@ -201,6 +201,58 @@
   .gap-box.now  li::before { content: "✕  "; color: var(--red); font-size: 11px; }
   .gap-box.need li::before { content: "✓  "; color: var(--blue); font-size: 11px; }
 
+  /* ── CASE CARD STATS ── */
+  .card-stat-row { display: flex; gap: 0; border-top: 1px solid var(--mgray); }
+  .cstat { flex: 1; text-align: center; padding: 10px 6px; border-right: 1px solid var(--mgray); }
+  .cstat:last-child { border-right: none; }
+  .cstat-val { font-size: 16px; font-weight: 900; color: var(--navy); line-height: 1.1; }
+  .cstat-lbl { font-size: 10px; color: var(--gray); margin-top: 3px; line-height: 1.3; }
+  .c-pogo  .cstat-val { color: #92400E; }
+  .c-super .cstat-val { color: var(--navy); }
+  .c-mono  .cstat-val { color: #065F46; }
+  .c-plytk .cstat-val { color: #6B21A8; }
+
+  /* ── CHANNEL DIAGRAM ── */
+  .channel-diagram { display: flex; align-items: center; gap: 0; margin: 18px 0; background: var(--lgray); border-radius: 10px; padding: 20px; }
+  .ch-box { flex: 1; background: white; border-radius: 8px; padding: 18px 14px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
+  .ch-box.ch-store { border-top: 3px solid var(--dgray); }
+  .ch-box.ch-web   { border-top: 3px solid var(--blue); }
+  .ch-icon  { font-size: 28px; margin-bottom: 6px; }
+  .ch-name  { font-size: 13px; font-weight: 800; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
+  .ch-role  { font-size: 12px; color: var(--sub); line-height: 1.6; margin-bottom: 8px; }
+  .ch-target{ font-size: 11px; font-weight: 700; color: white; background: var(--navy); display: inline-block; padding: 2px 8px; border-radius: 20px; }
+  .ch-box.ch-web .ch-target { background: var(--blue); }
+  .ch-arrow { display: flex; flex-direction: column; align-items: center; padding: 0 12px; flex-shrink: 0; }
+  .ch-arrow-line  { width: 40px; height: 2px; background: var(--mgray); position: relative; }
+  .ch-arrow-line::after { content: '▶'; position: absolute; right: -8px; top: -7px; font-size: 10px; color: var(--dgray); }
+  .ch-arrow-label { font-size: 10px; color: var(--dgray); margin-top: 5px; }
+
+  /* ── FUNNEL ── */
+  .funnel-row { display: flex; align-items: stretch; gap: 0; margin: 14px 0; }
+  .funnel-step { flex: 1; border-radius: 8px; overflow: hidden; border: 1px solid var(--mgray); }
+  .funnel-arrow { display: flex; align-items: center; padding: 0 6px; font-size: 20px; color: var(--dgray); flex-shrink: 0; }
+  .fs-num { font-size: 11px; font-weight: 800; letter-spacing: 1px; text-align: center; padding: 6px; }
+  .fs1 .fs-num { background: #E0E7FF; color: #3730A3; }
+  .fs2 .fs-num { background: #DBEAFE; color: var(--navy); }
+  .fs3 .fs-num { background: #D1FAE5; color: #065F46; }
+  .fs-title { font-size: 14px; font-weight: 800; color: var(--navy); text-align: center; padding: 10px 10px 6px; line-height: 1.3; }
+  .fs-title span { font-size: 11px; font-weight: 400; color: var(--gray); }
+  .fs-body { padding: 10px 12px 14px; }
+  .fs-goal  { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .fs-items { font-size: 12px; color: var(--sub); line-height: 1.6; margin-bottom: 8px; }
+  .fs-kpi   { font-size: 11px; color: white; font-weight: 700; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+  .fs1 .fs-kpi { background: #6366F1; }
+  .fs2 .fs-kpi { background: var(--blue); }
+  .fs3 .fs-kpi { background: var(--green); }
+  @media (max-width: 768px) {
+    .funnel-row { flex-direction: column; }
+    .funnel-arrow { transform: rotate(90deg); align-self: center; padding: 2px 0; }
+    .channel-diagram { flex-direction: column; }
+    .ch-arrow { flex-direction: row; padding: 8px 0; }
+    .ch-arrow-line { width: 30px; }
+    .card-stat-row { flex-wrap: wrap; }
+  }
+
   /* ── NOTE / FOOTER ── */
   .note { font-size: 12px; color: var(--gray); background: var(--lgray); border-left: 3px solid var(--mgray); padding: 8px 12px; border-radius: 0 4px 4px 0; margin: 8px 0; line-height: 1.6; }
   .footnotes { margin-top: 36px; padding: 22px 26px; background: var(--lgray); border-radius: 8px; }
@@ -282,21 +334,15 @@
 <!-- 00 -->
 <div class="section" id="s00">
   <div class="sec-hd"><span class="sec-num">00</span><span class="sec-title">현황 진단 — GM 웹샵 매출 추이</span></div>
-  <div class="tw">
-    <table>
-      <thead><tr><th>구분</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>5월</th><th>6월</th><th>7월</th><th>8월</th><th>9월</th><th>10월</th><th>11월</th><th>12월</th></tr></thead>
-      <tbody>
-        <tr><td>매출(원)</td><td class="hi">176,209,500</td><td>93,884,500</td><td>79,527,500</td><td class="hi">116,615,000</td><td>22,700,500</td><td>21,322,500</td><td>44,613,500</td><td class="warn">5,841,500</td><td class="warn">7,302,000</td><td class="warn">1,512,000</td><td class="warn">888,500</td><td class="warn">1,319,000</td></tr>
-        <tr><td>전체 비중</td><td class="hi">7.0%</td><td>5.1%</td><td>6.4%</td><td class="hi">10.7%</td><td>1.8%</td><td>1.4%</td><td>1.4%</td><td class="warn">0.4%</td><td class="warn">0.7%</td><td class="warn">0.1%</td><td class="warn">0.1%</td><td class="warn">0.1%</td></tr>
-      </tbody>
-    </table>
+  <div style="position:relative;height:260px;margin:8px 0 4px">
+    <canvas id="revenueChart"></canvas>
   </div>
-  <div class="callout alert" style="margin-top:14px">
+  <div class="callout info" style="margin-top:14px">
     <div class="badge">진단</div>
-    <div class="body">4월 이후 매출 및 비중이 급격히 하락. 10~12월 비중 0.1% 수준은 사실상 웹샵이 유저에게 인지되지 않고 있음을 의미합니다.</div>
+    <div class="body">상반기 대비 하반기 매출 및 비중이 크게 감소하는 추세. 글로벌 평균(15%+) 대비 현재 비중이 낮아 운영 전략 개선을 통한 회복 여지가 있습니다.</div>
   </div>
   <div class="kpi-row c4" style="margin-top:18px">
-    <div class="kpi red"><div class="val">0.1%</div><div class="lbl">GM 웹샵<br>현재 Capture Rate</div><div class="note">10~12월 평균</div></div>
+    <div class="kpi"><div class="val">0.1~7%</div><div class="lbl">GM 웹샵<br>Capture Rate 범위</div><div class="note">연간 월별 편차 큼</div></div>
     <div class="kpi blue"><div class="val">15.2%</div><div class="lbl">글로벌 평균<br>Capture Rate</div><div class="note">2026 Q1 기준 <sup class="ref">1</sup></div></div>
     <div class="kpi blue"><div class="val">31%</div><div class="lbl">Playtika<br>DTC 비중</div><div class="note">Q3 2025 <sup class="ref">2</sup></div></div>
     <div class="kpi blue"><div class="val">44%</div><div class="lbl">Stillfront<br>DTC 비중</div><div class="note">Q3 2025 <sup class="ref">3</sup></div></div>
@@ -306,7 +352,7 @@
 <!-- 01 -->
 <div class="section" id="s01">
   <div class="sec-hd"><span class="sec-num">01</span><span class="sec-title">자사 웹샵 현황 분석 — 타사 대비 Gap</span></div>
-  <p class="lead">GM 웹샵(<a href="https://gm.floor.line.games/kr/shop" target="_blank" style="color:var(--blue)">gm.floor.line.games/kr/shop</a>)의 현재 구성을 글로벌 상위 게임사 웹샵과 비교했을 때, 재방문을 유도하는 구조적 장치가 부분적으로 부재합니다.</p>
+  <p class="lead">GM 웹샵(<a href="https://gm.floor.line.games/kr/shop" target="_blank" style="color:var(--blue)">gm.floor.line.games/kr/shop</a>)은 현재 KR 단독 서비스 중이며, 포인트·쿠폰 등 기본 인프라는 갖춰져 있습니다. 글로벌 상위 게임사 대비 재방문 유도 장치를 추가로 강화하는 방향으로 고도화가 가능합니다.</p>
 
   <div class="sub-hd">현재 GM 웹샵 운영 현황</div>
   <div class="tw">
@@ -317,10 +363,11 @@
         <tr><td>포인트 제도</td><td>실결제금액의 <b>10% 적립</b>, 1P=1원, 최대 50% 사용, 유효기간 60일</td><td class="ok">적립율 10%는 경쟁력 있는 수준 (Pokemon GO 7~10%와 유사)</td></tr>
         <tr><td>포인트 유효기간</td><td>적립일로부터 <b>60일</b></td><td class="warn">타사 대비 짧음 — 소멸 임박 알림 활용 여부 불명</td></tr>
         <tr><td>포인트 교환처</td><td>창세기전스토어 내 상품 구매에만 사용 가능</td><td class="warn">아이템 교환 카탈로그 없음 — 사용 동기 제한적</td></tr>
+        <tr><td>결제 수단</td><td>LINEGames PAY, 신용/체크카드, 휴대폰, 상품권, 선불카드, PAYCO·카카오페이·TOSS·N페이 등</td><td class="ok">KR 주요 결제 수단 충분히 커버</td></tr>
         <tr><td>쿠폰</td><td>쿠폰 메뉴 별도 운영 중</td><td class="ok">기본 구조 존재</td></tr>
-        <tr><td>데일리 보상</td><td>없음</td><td class="warn">재방문 유도 장치 부재</td></tr>
+        <tr><td>데일리 보상</td><td>없음</td><td class="warn">재방문 유도 장치 추가 검토 필요</td></tr>
         <tr><td>멤버십/VIP</td><td>없음</td><td class="warn">충성 유저 락인 수단 없음</td></tr>
-        <tr><td>이벤트 상품</td><td>게임 업데이트 연계 한정 상품 운영 이력 있음 (2025년 8월 초 이후 중단)</td><td class="warn">9월부터 매출 급감과 시기적으로 겹침 — 재개 검토 필요</td></tr>
+        <tr><td>이벤트 상품</td><td>게임 업데이트 연계 한정 상품 운영 이력 있음 (2025년 8월 초 이후 중단)</td><td class="warn">하반기 감소 추세와 시기적으로 겹침 — 재개 검토 필요</td></tr>
       </tbody>
     </table>
   </div>
@@ -356,7 +403,7 @@
     <table>
       <thead><tr><th>우선순위</th><th>개선 항목</th><th>현재 상태</th><th>예상 효과</th></tr></thead>
       <tbody>
-        <tr><td class="hi">1순위</td><td>이벤트 상품 운영 재개</td><td class="warn">2025년 8월 초 이후 중단</td><td>매출 회복 가장 직접적인 레버 — 9월 급감과 시기 겹침 (인과관계 단정은 어려움)</td></tr>
+        <tr><td class="hi">1순위</td><td>이벤트 상품 운영 재개</td><td class="warn">2025년 8월 초 이후 중단</td><td>하반기 감소 추세와 시기 겹침 — 유저 구매 동기 강화에 직접적으로 기여 가능</td></tr>
         <tr><td class="hi">1순위</td><td>포인트 소멸 임박 알림 발송</td><td class="warn">미운영</td><td>추가 개발 없이 즉시 적용 가능한 재방문 트리거</td></tr>
         <tr><td class="hi">1순위</td><td>데일리 로그인 보상 도입</td><td class="warn">없음</td><td>활성 유저 +200%, 월 구매 +50% <sup class="ref">4</sup></td></tr>
         <tr><td class="hi">1순위</td><td>첫 구매 웰컴 오퍼</td><td class="warn">없음</td><td>첫 전환율 극대화 — Pokemon GO 역진 보너스 구조 참고</td></tr>
@@ -374,58 +421,79 @@
   <div class="sec-hd"><span class="sec-num">02</span><span class="sec-title">타 게임사 웹샵 운영 사례</span></div>
   <p class="lead">카드를 클릭하면 상세 내용을 볼 수 있습니다.</p>
   <div class="case-grid">
+
     <div class="case-card c-pogo" onclick="toggle(this)">
       <div class="card-hd">
         <div class="card-hd-left"><span class="tag">SCOPELY</span><span class="name">Pokemon GO Web Store</span></div>
         <span class="chevron">▼</span>
       </div>
+      <div class="card-stat-row">
+        <div class="cstat"><div class="cstat-val">$8B</div><div class="cstat-lbl">누적 매출</div></div>
+        <div class="cstat"><div class="cstat-val">2,000만</div><div class="cstat-lbl">주간 활성 유저</div></div>
+        <div class="cstat"><div class="cstat-val">+10%</div><div class="cstat-lbl">웹샵 보너스 코인</div></div>
+      </div>
       <div class="card-body">
-        <div class="row"><b>핵심 유인</b>앱 대비 7~10% 추가 코인 — 소액 구매일수록 보너스율 높게 설계 (역진 구조)</div>
+        <div class="row"><b>핵심 유인</b>앱 대비 7~10% 추가 코인 — 소액 구매일수록 보너스율 높게 설계 (역진 구조로 첫 구매 유도)</div>
         <div class="row"><b>포인트 제도</b>모든 구매 시 포인트 적립 → 레이드 티켓·인큐베이터 등 인게임 아이템 교환</div>
         <div class="row"><b>첫 구매 혜택</b>£9.99 이상 첫 구매 시 15% 할인 쿠폰 제공</div>
-        <div class="row"><b>실적</b>웹샵 누적 매출 약 $8B · 주간 활성 유저 2,000만 명 <sup class="ref">5</sup></div>
         <div class="card-footer"><a class="shop-link" href="https://store.pokemongo.com/" target="_blank">웹샵 바로가기 →</a></div>
       </div>
     </div>
+
     <div class="case-card c-super" onclick="toggle(this)">
       <div class="card-hd">
         <div class="card-hd-left"><span class="tag">SUPERCELL</span><span class="name">Supercell Store</span></div>
         <span class="chevron">▼</span>
       </div>
+      <div class="card-stat-row">
+        <div class="cstat"><div class="cstat-val">$10B+</div><div class="cstat-lbl">CoC 누적 매출</div></div>
+        <div class="cstat"><div class="cstat-val">×2</div><div class="cstat-lbl">웹샵 트래픽 6개월</div></div>
+        <div class="cstat"><div class="cstat-val">5개</div><div class="cstat-lbl">통합 포인트 게임</div></div>
+      </div>
       <div class="card-body">
         <div class="row"><b>크로스게임 포인트</b>Brawl Stars 결제 포인트로 Clash of Clans 아이템 구매 가능 — 5개 게임 통합 포인트</div>
         <div class="row"><b>독점 아이템</b>웹샵에서만 구매 가능한 스킨·아이템 → 앱스토어 이탈 유도</div>
         <div class="row"><b>Stamp Card</b>Gold Pass Stamp Card 완성 시 Book of Everything 무료 지급</div>
-        <div class="row"><b>실적</b>Clash of Clans 누적 매출 $10B 돌파 · Brawl Stars 웹샵 트래픽 6개월 만에 2배 <sup class="ref">6</sup></div>
         <div class="card-footer"><a class="shop-link" href="https://store.supercell.com/" target="_blank">웹샵 바로가기 →</a></div>
       </div>
     </div>
+
     <div class="case-card c-mono" onclick="toggle(this)">
       <div class="card-hd">
         <div class="card-hd-left"><span class="tag">SCOPELY</span><span class="name">Monopoly GO — Tycoon Club</span></div>
         <span class="chevron">▼</span>
       </div>
+      <div class="card-stat-row">
+        <div class="cstat"><div class="cstat-val">65P</div><div class="cstat-lbl">$1 지출 시 적립</div></div>
+        <div class="cstat"><div class="cstat-val">90일</div><div class="cstat-lbl">Tycoon Pass 기간</div></div>
+        <div class="cstat"><div class="cstat-val">초대제</div><div class="cstat-lbl">구매 조건 없음</div></div>
+      </div>
       <div class="card-body">
         <div class="row"><b>초대 전용 멤버십</b>1개월 활동 + 보드 레벨 10 달성 시 초대 (구매 조건 없음) → 소속감·희소성 제공</div>
         <div class="row"><b>포인트 제도</b>$1 지출 시 약 65 Loyalty Point 적립 → 스티커팩·주사위 번들·독점 토큰 교환</div>
         <div class="row"><b>이중 동기 구조</b>포인트 사용 시 90일 Tycoon Pass도 동시 진행 → 한 번 결제로 포인트 + 패스 보상</div>
-        <div class="row"><b>실적</b>앱 내 구매 매출 정체, 전체 성장이 Tycoon Club(웹샵)에서 발생 <sup class="ref">7</sup></div>
         <div class="card-footer"><a class="shop-link" href="https://www.monopolygo.com/benefits" target="_blank">웹샵 바로가기 →</a></div>
       </div>
     </div>
+
     <div class="case-card c-plytk" onclick="toggle(this)">
       <div class="card-hd">
         <div class="card-hd-left"><span class="tag">PLAYTIKA</span><span class="name">Playtika DTC Platform</span></div>
         <span class="chevron">▼</span>
       </div>
+      <div class="card-stat-row">
+        <div class="cstat"><div class="cstat-val">31%</div><div class="cstat-lbl">DTC 매출 비중</div></div>
+        <div class="cstat"><div class="cstat-val">$209M</div><div class="cstat-lbl">Q3 2025 DTC 매출</div></div>
+        <div class="cstat"><div class="cstat-val">+3%p</div><div class="cstat-lbl">총이익률 개선</div></div>
+      </div>
       <div class="card-body">
         <div class="row"><b>CRM 개인화</b>유저 세그먼트별 맞춤 오퍼 자동 발송 — 구매 이력·플레이 패턴 분석 기반</div>
         <div class="row"><b>구독 패스</b>5개 게임 전반 월정액 구독 패스 운영 → 안정적 반복 수익 구조</div>
-        <div class="row"><b>실적</b>Q3 2025 DTC 매출 $209M (전체의 31%) · 장기 목표 40% <sup class="ref">2</sup></div>
-        <div class="row"><b>특징</b>DTC 비중 상승이 전체 총이익률 3%p 직접 개선</div>
+        <div class="row"><b>장기 목표</b>DTC 비중 40% 상향 목표 설정 <sup class="ref">2</sup></div>
         <div class="card-footer"><a class="shop-link" href="https://www.playtika.com" target="_blank">Playtika 공식 →</a></div>
       </div>
     </div>
+
   </div>
   <div class="sub-hd">공통 핵심 장치</div>
   <table class="itbl">
@@ -440,22 +508,59 @@
 <div class="section" id="s03">
   <div class="sec-hd"><span class="sec-num">03</span><span class="sec-title">전략 프레임워크 — 채널 역할 분담</span></div>
   <p class="lead">웹샵을 '결제 페이지'가 아닌 <b>CRM·라이브옵스 독립 플랫폼</b>으로 재정의하는 것이 출발점입니다.</p>
-  <div class="tw"><table>
-    <thead><tr><th>채널</th><th>역할</th><th>타깃 유저</th><th>핵심 지표</th></tr></thead>
-    <tbody>
-      <tr><td>App Store / Google Play</td><td>신규 유저 확보, 게임 발견, 첫 결제</td><td>잠재·신규 유저</td><td>설치수, 첫 결제율</td></tr>
-      <tr><td>Web Shop</td><td>재방문·재구매·충성 유저 관리·매출 확대</td><td>기존·과금 유저</td><td>Capture Rate, 재방문율</td></tr>
-    </tbody>
-  </table></div>
+
+  <!-- 채널 분담 다이어그램 -->
+  <div class="channel-diagram">
+    <div class="ch-box ch-store">
+      <div class="ch-icon">🏪</div>
+      <div class="ch-name">App Store<br>Google Play</div>
+      <div class="ch-role">신규 유저 확보<br>게임 발견 · 첫 결제</div>
+      <div class="ch-target">잠재 · 신규 유저</div>
+    </div>
+    <div class="ch-arrow">
+      <div class="ch-arrow-line"></div>
+      <div class="ch-arrow-label">유저 유입</div>
+    </div>
+    <div class="ch-box ch-web">
+      <div class="ch-icon">🛒</div>
+      <div class="ch-name">Web Shop</div>
+      <div class="ch-role">재방문 · 재구매<br>충성 유저 관리 · CRM</div>
+      <div class="ch-target">기존 · 과금 유저</div>
+    </div>
+  </div>
+
   <div class="sub-hd">운영 3단계 모델</div>
-  <div class="tw"><table>
-    <thead><tr><th>단계</th><th>목표</th><th>주요 수단</th><th>핵심 지표</th></tr></thead>
-    <tbody>
-      <tr><td><b>1단계 Discovery</b></td><td>웹샵 인지·첫 방문</td><td>커뮤니티·SNS, 웰컴 보너스</td><td>방문자 수 (MAU 대비 %)</td></tr>
-      <tr><td><b>2단계 Conversion</b></td><td>방문자 → 구매자</td><td>전용 상품, 역진 보너스</td><td>전환율 목표 3~8%</td></tr>
-      <tr><td><b>3단계 Expansion</b></td><td>반복 구매·충성 유저</td><td>포인트, 멤버십, CRM 오퍼</td><td>Capture Rate 10%→20%</td></tr>
-    </tbody>
-  </table></div>
+  <div class="funnel-row">
+    <div class="funnel-step fs1">
+      <div class="fs-num">1</div>
+      <div class="fs-title">Discovery<br><span>발견</span></div>
+      <div class="fs-body">
+        <div class="fs-goal">웹샵 인지 · 첫 방문 유도</div>
+        <div class="fs-items">커뮤니티 · SNS 공지<br>첫 방문 웰컴 보너스</div>
+        <div class="fs-kpi">방문자 수 (MAU 대비 %)</div>
+      </div>
+    </div>
+    <div class="funnel-arrow">→</div>
+    <div class="funnel-step fs2">
+      <div class="fs-num">2</div>
+      <div class="fs-title">Conversion<br><span>전환</span></div>
+      <div class="fs-body">
+        <div class="fs-goal">방문자 → 구매자</div>
+        <div class="fs-items">전용 상품 · 역진 보너스<br>한정 패키지</div>
+        <div class="fs-kpi">전환율 목표 3~8%</div>
+      </div>
+    </div>
+    <div class="funnel-arrow">→</div>
+    <div class="funnel-step fs3">
+      <div class="fs-num">3</div>
+      <div class="fs-title">Expansion<br><span>확장</span></div>
+      <div class="fs-body">
+        <div class="fs-goal">반복 구매 · 충성 유저</div>
+        <div class="fs-items">포인트 제도 · 멤버십<br>CRM 개인화 오퍼</div>
+        <div class="fs-kpi">Capture Rate 10%→20%</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- 04 -->
@@ -478,7 +583,7 @@
   <div class="tw"><table>
     <thead><tr><th>시장</th><th>운영 주체</th><th>현지 결제 수단</th><th>핵심 전략</th></tr></thead>
     <tbody>
-      <tr><td class="hi">🇰🇷 한국</td><td class="ok">자사 웹샵</td><td>카드, 네이버페이, 카카오페이, 통신사</td><td>포인트·이벤트 고도화, 2026.12 정책 변화 대비 인게임 연동 준비</td></tr>
+      <tr><td class="hi">🇰🇷 한국</td><td class="ok">자사 웹샵<br>(현재 운영 중)</td><td>LINEGames PAY / 신용·체크카드 / 휴대폰 / 상품권 / 선불카드 / PAYCO · 카카오페이 · TOSS · N페이</td><td>KR 결제 수단 이미 충분히 확보. 포인트·이벤트 고도화 및 2026.12 정책 변화 대비 인게임 연동 준비에 집중</td></tr>
       <tr><td class="hi">🇯🇵 일본</td><td class="ok">자사 웹샵</td><td>MerPay, PayPay, 편의점 결제</td><td>현지화, 일본 공휴일 연계 시즌 이벤트</td></tr>
       <tr><td class="hi">🇹🇼 대만</td><td class="ok">자사 웹샵</td><td>LINE Pay, 편의점, ATM</td><td>LINE 생태계 연계 마케팅 활용</td></tr>
       <tr><td class="hi">🇺🇸 미국</td><td class="ok">자사 웹샵 (검토)</td><td>크레딧카드, PayPal, Affirm</td><td>D2C Capture Rate 20%+ 시장 — 리소스 여건 따라 Xsolla 혼합 가능</td></tr>
@@ -625,7 +730,7 @@
   <p class="lead" style="font-weight:700;color:var(--navy);font-size:15px">웹샵 성패는 '얼마나 싸게 파느냐'가 아니라 '유저가 왜 다시 오는가'에 달려 있습니다.</p>
   <div class="sum-grid">
     <div class="sum-card"><div class="sn">POINT 01</div><div class="st">채널 재정의</div><div class="sb">웹샵 = 결제 페이지가 아닌 CRM·라이브옵스 독립 플랫폼</div></div>
-    <div class="sum-card"><div class="sn">POINT 02</div><div class="st">이벤트 상품 재개 최우선</div><div class="sb">중단 이후 매출 급감과 시기 겹침 — 가장 직접적인 매출 회복 레버</div></div>
+    <div class="sum-card"><div class="sn">POINT 02</div><div class="st">이벤트 상품 재개</div><div class="sb">게임 업데이트 연계 한정 상품 운영 — 유저 구매 동기 및 웹샵 방문 강화</div></div>
     <div class="sum-card"><div class="sn">POINT 03</div><div class="st">포인트 제도 고도화</div><div class="sb">적립율 10%는 경쟁력 있음 — 유효기간 연장·교환 카탈로그·소멸 알림으로 실효성 강화</div></div>
     <div class="sum-card"><div class="sn">POINT 04</div><div class="st">첫 진입 장벽 낮추기</div><div class="sb">소액 구매에 높은 보너스율 — Pokemon GO 역진 설계로 신규 과금 유저 확대</div></div>
     <div class="sum-card"><div class="sn">POINT 05</div><div class="st">하이브리드 운영</div><div class="sb">KR·JP·TW·US 자사 직접 운영 → 나머지는 Xsolla로 글로벌 커버</div></div>
@@ -652,7 +757,84 @@
 </div><!-- /container -->
 </div><!-- /main -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
+// 매출 추이 차트
+(function() {
+  const labels = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  const revenue = [176.2, 93.9, 79.5, 116.6, 22.7, 21.3, 44.6, 5.8, 7.3, 1.5, 0.9, 1.3];
+  const share   = [7.0, 5.1, 6.4, 10.7, 1.8, 1.4, 1.4, 0.4, 0.7, 0.1, 0.1, 0.1];
+
+  const ctx = document.getElementById('revenueChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          type: 'bar',
+          label: '웹샵 매출 (백만원)',
+          data: revenue,
+          backgroundColor: revenue.map((v, i) =>
+            i <= 3 ? 'rgba(37,99,235,0.75)' : i <= 6 ? 'rgba(107,114,128,0.5)' : 'rgba(220,38,38,0.55)'
+          ),
+          borderColor: revenue.map((v, i) =>
+            i <= 3 ? '#2563EB' : i <= 6 ? '#9CA3AF' : '#DC2626'
+          ),
+          borderWidth: 1,
+          borderRadius: 4,
+          yAxisID: 'y',
+        },
+        {
+          type: 'line',
+          label: '전체 매출 대비 비중 (%)',
+          data: share,
+          borderColor: '#1B3A6B',
+          backgroundColor: 'rgba(27,58,107,0.08)',
+          borderWidth: 2,
+          pointRadius: 4,
+          pointBackgroundColor: '#1B3A6B',
+          tension: 0.3,
+          fill: true,
+          yAxisID: 'y2',
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { font: { size: 12 }, boxWidth: 14, padding: 16 } },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.datasetIndex === 0
+              ? ` 매출: ${ctx.parsed.y.toFixed(1)}백만원`
+              : ` 비중: ${ctx.parsed.y}%`
+          }
+        },
+        annotation: {}
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 12 } } },
+        y: {
+          position: 'left',
+          title: { display: true, text: '매출 (백만원)', font: { size: 11 }, color: '#6B7280' },
+          grid: { color: '#F3F4F6' },
+          ticks: { font: { size: 11 }, callback: v => v + 'M' }
+        },
+        y2: {
+          position: 'right',
+          title: { display: true, text: '전체 대비 비중 (%)', font: { size: 11 }, color: '#6B7280' },
+          grid: { display: false },
+          ticks: { font: { size: 11 }, callback: v => v + '%' },
+          min: 0, max: 14
+        }
+      }
+    }
+  });
+})();
+
 // 카드 토글
 function toggle(card) { card.classList.toggle('open'); }
 
