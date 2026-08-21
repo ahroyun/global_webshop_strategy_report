@@ -144,13 +144,15 @@
   .case-card .row { font-size: 13px; color: var(--sub); padding: 7px 0; border-bottom: 1px dashed var(--mgray); line-height: 1.6; }
   .case-card .row:last-child { border-bottom: none; }
   .case-card .row b { color: var(--navy); margin-right: 6px; }
-  .case-card .card-footer { margin-top: 12px; display: flex; justify-content: flex-end; }
+  .case-card .card-footer { margin-top: 12px; display: flex; justify-content: flex-end; gap: 8px; }
   .case-card .shop-link { font-size: 12px; font-weight: 700; color: var(--blue); text-decoration: none; border: 1px solid var(--blue); padding: 5px 12px; border-radius: 5px; }
   .case-card .shop-link:hover { background: var(--lblue); }
-  .c-pogo   .card-hd { background: #FFFBEB; } .c-pogo   .tag { background: #CA8A04; }
-  .c-super  .card-hd { background: var(--lblue); } .c-super  .tag { background: var(--blue); }
-  .c-nexon  .card-hd { background: #FFF1F2; } .c-nexon  .tag { background: #E11D48; }
+  .case-card .shop-link.gl { color: #0891b2; border-color: #0891b2; }
+  .case-card .shop-link.gl:hover { background: #e0f2fe; }
   .c-nmar   .card-hd { background: #FFF7ED; } .c-nmar   .tag { background: #EA580C; }
+  .c-sw     .card-hd { background: #F0FDF4; } .c-sw     .tag { background: #16A34A; }
+  .c-skre   .card-hd { background: #FAF5FF; } .c-skre   .tag { background: #7C3AED; }
+  .c-mhn    .card-hd { background: #FEF2F2; } .c-mhn    .tag { background: #B91C1C; }
 
   /* ── PHASE ── */
   .phases { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 14px 0; }
@@ -207,10 +209,9 @@
   .cstat:last-child { border-right: none; }
   .cstat-val { font-size: 16px; font-weight: 900; color: var(--navy); line-height: 1.1; }
   .cstat-lbl { font-size: 10px; color: var(--gray); margin-top: 3px; line-height: 1.3; }
-  .c-pogo  .cstat-val { color: #92400E; }
-  .c-super .cstat-val { color: var(--navy); }
-  .c-mono  .cstat-val { color: #065F46; }
-  .c-plytk .cstat-val { color: #6B21A8; }
+  .c-sw   .cstat-val { color: #166534; }
+  .c-skre .cstat-val { color: #6D28D9; }
+  .c-mhn  .cstat-val { color: #991B1B; }
 
   /* ── CHANNEL DIAGRAM ── */
   .channel-diagram { display: flex; align-items: center; gap: 0; margin: 18px 0; background: var(--lgray); border-radius: 10px; padding: 20px; }
@@ -341,10 +342,10 @@
   </div>
   <div class="callout info" style="margin-top:14px">
     <div class="badge">진단</div>
-    <div class="body">상반기 대비 하반기 매출 및 비중이 크게 감소하는 추세. 상위 게임사 DTC 비중(18~44%)과 비교해 현재 비중이 낮아 운영 전략 개선을 통한 회복 여지가 있습니다.</div>
+    <div class="body">2025년 1월 신규 캐릭터 출시 연계 상품으로 최고점(94.7백만원, 3.8%) 달성 후 지속 감소. 2025년 하반기 이후 월 1백만원 미만으로 사실상 운영 공백 상태.</div>
   </div>
   <div class="kpi-row c4" style="margin-top:18px">
-    <div class="kpi"><div class="val">0.1~7%</div><div class="lbl">GM 웹샵<br>Capture Rate 범위</div><div class="note">연간 월별 편차 큼</div></div>
+    <div class="kpi"><div class="val">0~3.8%</div><div class="lbl">GM 웹샵<br>Capture Rate 범위</div><div class="note">25.1월 최고 / 현재 0%대</div></div>
     <div class="kpi blue"><div class="val">72%</div><div class="lbl">상위 모바일 게임 중<br>웹샵 운영 비율</div><div class="note">Appcharge 2025 <sup class="ref"><a href="#fn1">1</a></sup></div></div>
     <div class="kpi blue"><div class="val">31%</div><div class="lbl">Playtika<br>DTC 비중</div><div class="note">Q3 2025 <sup class="ref"><a href="#fn2">2</a></sup></div></div>
     <div class="kpi blue"><div class="val">44%</div><div class="lbl">Stillfront<br>DTC 비중</div><div class="note">Q3 2025 <sup class="ref"><a href="#fn3">3</a></sup></div></div>
@@ -428,96 +429,108 @@
   </div>
   <div class="case-grid">
 
-    <!-- 국내 1: 넥슨 메이플스토리M -->
-    <div class="case-card c-nexon" onclick="toggleCard(this)">
-      <div class="card-hd">
-        <div class="card-hd-left"><span class="tag">NEXON 🇰🇷</span><span class="name">넥슨 메이플스토리M 상점</span></div>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="card-stat-row">
-        <div class="cstat"><div class="cstat-val">모바일</div><div class="cstat-lbl">모바일 게임 전용</div></div>
-        <div class="cstat"><div class="cstat-val">KR 전용</div><div class="cstat-lbl">국내 서비스만 운영</div></div>
-        <div class="cstat"><div class="cstat-val">아이템샵</div><div class="cstat-lbl">웹 전용 아이템샵</div></div>
-      </div>
-      <div class="card-body">
-        <div class="row"><b>서비스 범위</b>한국 단독 서비스 — GM 웹샵과 동일하게 KR 전용으로 운영 중. 모바일 게임 웹샵 구조 비교에 가장 적합한 국내 사례</div>
-        <div class="row"><b>모바일 게임 웹샵</b>"언제 어디서나 간편한 내 손안의 아이템샵" — 앱 내 캐시샵과 별도로 웹샵 전용 상품·패키지 운영</div>
-        <div class="row"><b>넥슨 공통 플랫폼</b>shopping.nexon.com 기반으로 여러 게임 웹샵 통합 운영 — 공통 포인트·마일리지 구조 연동</div>
-        <div class="row"><b>참고 포인트</b>KR 단독 모바일 게임 웹샵 UX·상품 구성이 GM 웹샵과 직접 비교 가능</div>
-        <div class="card-footer"><a class="shop-link" href="https://shopping.nexon.com/kr/maplestorym/main" target="_blank">웹샵 바로가기 →</a></div>
-      </div>
-    </div>
-
-    <!-- 국내 2: 넷마블 -->
+    <!-- 국내 1: 넷마블 일곱개의대죄 GRAND CROSS -->
     <div class="case-card c-nmar" onclick="toggleCard(this)">
       <div class="card-hd">
         <div class="card-hd-left"><span class="tag">NETMARBLE 🇰🇷</span><span class="name">일곱개의대죄: GRAND CROSS 모험가 상점</span></div>
         <span class="chevron">▼</span>
       </div>
       <div class="card-stat-row">
-        <div class="cstat"><div class="cstat-val">글로벌</div><div class="cstat-lbl">KO · EN 다국어 운영</div></div>
+        <div class="cstat"><div class="cstat-val">글로벌</div><div class="cstat-lbl">KO·EN 다국어 운영</div></div>
         <div class="cstat"><div class="cstat-val">자사</div><div class="cstat-lbl">직접 운영 웹샵</div></div>
         <div class="cstat"><div class="cstat-val">전용 혜택</div><div class="cstat-lbl">웹샵 전용 결제 혜택</div></div>
       </div>
       <div class="card-body">
-        <div class="row"><b>서비스 범위</b>한국어(ko)·영어(en) 글로벌 운영 확인 — 서버는 언어별 분기 제공. 단, JS 렌더링 구조상 브라우저 언어 설정에 따라 표시 언어가 달라질 수 있음</div>
-        <div class="row"><b>웹샵 전용 혜택</b>"공식 모험가 상점만의 결제 혜택"을 전면에 내세워 앱스토어 대비 웹샵 방문 유인 — 전용 혜택 중심 운영 전략</div>
+        <div class="row"><b>첫 구매 혜택</b>첫 구매 시 다이아 10개 추가 지급 — 신규 유저 전환 유도 장치</div>
+        <div class="row"><b>웹샵 전용 혜택</b>"공식 모험가 상점만의 결제 혜택"을 전면에 내세워 앱스토어 대비 방문 유인</div>
+        <div class="row"><b>포인트 유효기간</b>적립 포인트 30일 유효기간 운영 — 소멸 임박으로 재방문 유도</div>
+        <div class="row"><b>게스트 구매</b>비로그인 게스트 구매 가능 — 진입 장벽 최소화</div>
         <div class="row"><b>자사 직접 운영</b>외부 플랫폼 없이 자체 웹샵 구축·운영 — GM 웹샵과 동일한 자사 직접 운영 구조로 비교 참고 가능</div>
-        <div class="card-footer" style="gap:8px;display:flex;justify-content:flex-end">
-          <a class="shop-link" href="https://7dsgc-shop.netmarble.com/ko" target="_blank">KO →</a>
-          <a class="shop-link" href="https://7dsgc-shop.netmarble.com/en" target="_blank">EN →</a>
+        <div class="card-footer">
+          <a class="shop-link" href="https://7ds-shop.netmarble.com/" target="_blank">KR →</a>
+          <a class="shop-link gl" href="https://7ds-shop.netmarble.com/en" target="_blank">EN →</a>
         </div>
       </div>
     </div>
 
-    <!-- 해외 1: Pokemon GO -->
-    <div class="case-card c-pogo" onclick="toggleCard(this)">
+    <!-- 국내 2: 서머너즈워 -->
+    <div class="case-card c-sw" onclick="toggleCard(this)">
       <div class="card-hd">
-        <div class="card-hd-left"><span class="tag">SCOPELY 🌏</span><span class="name">Pokemon GO Web Store</span></div>
+        <div class="card-hd-left"><span class="tag">COM2US 🇰🇷</span><span class="name">서머너즈워: 천공의아레나 웹 상점</span></div>
         <span class="chevron">▼</span>
       </div>
       <div class="card-stat-row">
-        <div class="cstat"><div class="cstat-val">$8B <sup class="ref"><a href="#fn5">5</a></sup></div><div class="cstat-lbl">누적 매출</div></div>
-        <div class="cstat"><div class="cstat-val">2,000만 <sup class="ref"><a href="#fn5">5</a></sup></div><div class="cstat-lbl">주간 활성 유저</div></div>
-        <div class="cstat"><div class="cstat-val">+10% <sup class="ref"><a href="#fn5">5</a></sup></div><div class="cstat-lbl">소액 구매 보너스율</div></div>
+        <div class="cstat"><div class="cstat-val">컴투스</div><div class="cstat-lbl">자사 운영</div></div>
+        <div class="cstat"><div class="cstat-val">KR 중심</div><div class="cstat-lbl">한국어 서비스</div></div>
+        <div class="cstat"><div class="cstat-val">자격 제한</div><div class="cstat-lbl">이용 조건 있음</div></div>
       </div>
       <div class="card-body">
-        <div class="row"><b>PokéCoins 보너스 (역진 설계)</b>앱보다 웹샵에서 코인 구매 시 보너스 코인 추가 지급 — $0.99 시 +10%, $99.99 시 +6.9%로 소액 구매일수록 보너스율 높음 → 첫 구매 진입 장벽 낮춤. GM 웹샵의 캐럿 +10% 보너스 구조와 동일</div>
-        <div class="row"><b>Reward Road (포인트 적립)</b>실결제 구매 시 Reward Points 적립 → 월별 보상 구간 달성 시 아이템 지급. <b>웹샵 구매 시 2배 적립</b>으로 웹샵 방문 유인. 매월 말 포인트 초기화 (2025년 한국 포함 순차 론칭)</div>
-        <div class="row"><b>한정 판매 배지</b>LIMITED-TIME ONLY(기간 한정) · POPULAR 배지로 긴박감 및 인기 상품 유도. 이벤트 패스 등 웹샵 전용 상품 별도 운영</div>
-        <div class="row"><b>Daily Bundles</b>로그인 기반 개인화 번들 매일 자정 갱신 → 매일 방문 동기 제공</div>
-        <div class="card-footer"><a class="shop-link" href="https://store.pokemongo.com/" target="_blank">웹샵 바로가기 →</a></div>
+        <div class="row"><b>이용 자격 제한</b>2026년 이후 인앱 결제 기록이 있는 계정에 한해 웹샵 이용 가능 — 과금 유저만 타겟하는 선별적 접근</div>
+        <div class="row"><b>보너스 재화 우선 소진</b>웹샵 구매 시 지급된 보너스 재화가 먼저 소진되는 정책 — 추가 구매 유도 설계</div>
+        <div class="row"><b>보너스 2배 이벤트</b>기간 한정 보너스 2배 이벤트 운영 — 특정 기간 집중 구매 유도</div>
+        <div class="row"><b>게스트 구매 불가</b>웹샵과 연동된 계정 로그인 필수 — 비로그인 이용 제한</div>
+        <div class="card-footer">
+          <a class="shop-link" href="https://summonerswar-shop.com2us.com/" target="_blank">웹샵 →</a>
+        </div>
       </div>
     </div>
 
-    <!-- 해외 2: Supercell -->
-    <div class="case-card c-super" onclick="toggleCard(this)">
+    <!-- 국내 3: 세븐나이츠리버스 -->
+    <div class="case-card c-skre" onclick="toggleCard(this)">
       <div class="card-hd">
-        <div class="card-hd-left"><span class="tag">SUPERCELL 🌏</span><span class="name">Supercell Store</span></div>
+        <div class="card-hd-left"><span class="tag">NETMARBLE 🇰🇷</span><span class="name">세븐나이츠 Re:BIRTH 공식 웹샵</span></div>
         <span class="chevron">▼</span>
       </div>
       <div class="card-stat-row">
-        <div class="cstat"><div class="cstat-val">$10B+ <sup class="ref"><a href="#fn6">6</a></sup></div><div class="cstat-lbl">CoC 누적 매출</div></div>
-        <div class="cstat"><div class="cstat-val">×2 <sup class="ref"><a href="#fn6">6</a></sup></div><div class="cstat-lbl">웹샵 트래픽 6개월</div></div>
-        <div class="cstat"><div class="cstat-val">5개</div><div class="cstat-lbl">통합 포인트 게임</div></div>
+        <div class="cstat"><div class="cstat-val">넷마블</div><div class="cstat-lbl">자사 운영</div></div>
+        <div class="cstat"><div class="cstat-val">KO·EN</div><div class="cstat-lbl">글로벌 운영</div></div>
+        <div class="cstat"><div class="cstat-val">데일리</div><div class="cstat-lbl">일일 참여 장치</div></div>
       </div>
       <div class="card-body">
-        <div class="row"><b>크로스게임 포인트</b>Brawl Stars 결제 포인트로 Clash of Clans 아이템 구매 가능 — 5개 게임 통합 포인트</div>
-        <div class="row"><b>독점 아이템</b>웹샵에서만 구매 가능한 스킨·아이템 → 앱스토어 이탈 유도</div>
-        <div class="row"><b>Stamp Card</b>Gold Pass Stamp Card 완성 시 Book of Everything 무료 지급</div>
-        <div class="card-footer"><a class="shop-link" href="https://store.supercell.com/" target="_blank">웹샵 바로가기 →</a></div>
+        <div class="row"><b>데일리 타로카드 뽑기</b>매일 타로카드 뽑기 참여 — 접속만으로 참여 가능한 데일리 장치로 방문 동기 형성</div>
+        <div class="row"><b>접속 즉시 쿠폰 팝업</b>웹샵 접속 시 즉시 쿠폰 팝업 노출 — 첫 화면부터 구매 유인 강화</div>
+        <div class="row"><b>Hot 뱃지</b>인기 상품에 Hot 뱃지 표시 — 사회적 증거(social proof) 활용</div>
+        <div class="row"><b>글로벌 운영</b>한국어(ko)·영어(en) 글로벌 운영 — SRPG 장르 넷마블 자사 글로벌 웹샵 사례</div>
+        <div class="card-footer">
+          <a class="shop-link" href="https://skre-shop.netmarble.com/ko" target="_blank">KR →</a>
+          <a class="shop-link gl" href="https://skre-shop.netmarble.com/en" target="_blank">EN →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 해외: 몬헌나우 -->
+    <div class="case-card c-mhn" onclick="toggleCard(this)">
+      <div class="card-hd">
+        <div class="card-hd-left"><span class="tag">CAPCOM/SCOPELY 🌏</span><span class="name">Monster Hunter Now Web Store</span></div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="card-stat-row">
+        <div class="cstat"><div class="cstat-val">글로벌</div><div class="cstat-lbl">전 세계 서비스</div></div>
+        <div class="cstat"><div class="cstat-val">Web Only</div><div class="cstat-lbl">웹 전용 상품 운영</div></div>
+        <div class="cstat"><div class="cstat-val">구독 패스</div><div class="cstat-lbl">월정액 구독 운영</div></div>
+      </div>
+      <div class="card-body">
+        <div class="row"><b>Web Only 배지</b>웹샵 전용 상품에 "Web Only" 배지 명시 — 웹샵 독점성을 명확히 표시해 앱 대비 차별점 강조</div>
+        <div class="row"><b>3단계 보너스 구조</b>젬 구매 시 ①인앱 대비 추가 젬 ②첫 구매 보너스 젬 중첩 적용 — 여러 혜택을 동시에 제공</div>
+        <div class="row"><b>통합 구매 횟수 제한</b>웹샵+인앱샵 합산 구매 횟수 제한 운영 — 웹샵과 인앱 구매를 통합 관리하는 구조</div>
+        <div class="row"><b>웹 전용 콘텐츠</b>Premium Quest 등 웹샵에서만 구매 가능한 콘텐츠 운영 — 웹샵 방문의 독점적 이유 제공</div>
+        <div class="row"><b>구독 패스</b>Prime Hunter Pass·Extreme Hunter Pass 구독 플랜 — 월정액으로 안정적 반복 수익</div>
+        <div class="card-footer">
+          <a class="shop-link" href="https://store.monsterhunternow.com/ko" target="_blank">KR →</a>
+          <a class="shop-link gl" href="https://store.monsterhunternow.com/en" target="_blank">EN →</a>
+        </div>
       </div>
     </div>
 
   </div>
   <div class="sub-hd">사례에서 도출되는 주요 운영 장치</div>
   <table class="itbl">
-    <tr><td>웹샵 구매 우대</td><td>앱 대비 웹샵 구매 시 보너스 코인 추가 지급 또는 포인트 2배 적립 → <b>유저가 앱 대신 웹샵을 선택할 구체적인 이유</b> 제공</td></tr>
-    <tr><td>보너스 역진 설계</td><td>소액 구매에 더 높은 보너스율 → <b>첫 구매 장벽을 낮추고</b> 신규 과금 유저 저변 확대</td></tr>
-    <tr><td>포인트 적립·보상</td><td>구매 시 포인트 적립 → 일정 구간 달성 시 아이템 보상 지급. <b>이탈 방지 및 반복 구매 동기</b> 부여</td></tr>
-    <tr><td>이중 동기 구조</td><td>구매 시 포인트도 쌓이고 패스도 진행 → <b>한 번의 결제로 두 가지 보상</b> 경험</td></tr>
-    <tr><td>등급제 멤버십</td><td>누적 충전액 기반 등급 부여 → 등급별 추가 혜택 제공. <b>소속감과 지속 과금 동기</b> 동시 확보</td></tr>
-    <tr><td>크로스게임 포인트</td><td>여러 게임에 통용되는 포인트 구조 → 웹샵 자체가 플랫폼화되어 <b>특정 게임을 넘는 방문 이유</b> 형성</td></tr>
+    <tr><td>첫구매·접속 즉시 혜택</td><td>첫 구매 시 보너스 지급(일곱개의대죄) · 접속 즉시 쿠폰 팝업(세븐나이츠리버스) — <b>진입 첫 순간 구매 동기 형성</b></td></tr>
+    <tr><td>기간 한정 보너스 이벤트</td><td>보너스 2배 이벤트(서머너즈워) · Web Only 한정 패키지(몬헌나우) — <b>특정 기간 집중 구매 유도</b></td></tr>
+    <tr><td>데일리 참여 장치</td><td>타로카드 뽑기(세븐나이츠리버스) — <b>앱 외 웹샵 방문 습관 형성의 핵심 장치</b></td></tr>
+    <tr><td>웹 전용 상품·콘텐츠</td><td>Web Only 배지 상품(몬헌나우) · 웹샵 전용 혜택 슬로건(일곱개의대죄) — <b>웹샵 방문의 독점적 이유 제공</b></td></tr>
+    <tr><td>희소성 설계</td><td>통합 구매 횟수 제한(몬헌나우) · Hot 뱃지(세븐나이츠리버스) — <b>긴박감·인기 인식으로 구매 전환 가속</b></td></tr>
+    <tr><td>포인트 제도 (유효기간 활용)</td><td>포인트 30일 유효(일곱개의대죄) · 보너스 재화 우선 소진(서머너즈워) — <b>소멸 압박으로 재방문·재구매 유도</b></td></tr>
   </table>
 </div>
 
@@ -849,8 +862,10 @@
     <li id="fn6"><b>6.</b> Supercell Best Days (CoC 누적 매출 $10B, Brawl Stars 웹샵 트래픽) — <a href="https://supercell.com/en/news/best-days/" target="_blank">supercell.com</a></li>
     <li id="fn7"><b>7.</b> Hasbro Monopoly GO Licensing Revenue / Tycoon Club 수익 구조 — <a href="https://mobilegamer.biz/hasbro-makes-about-10m-a-month-from-monopoly-go/" target="_blank">mobilegamer.biz</a></li>
     <li id="fn8"><b>8.</b> Xsolla Regional Pricing Feature — 현지 결제 수단 전환율 +18.7%, 매출 +12.8% — <a href="https://xsolla.com/blog/how-harnessing-regional-pricing-boosts-revenue-and-engagement" target="_blank">xsolla.com</a> <em>※ 자사 발표 기준</em></li>
-    <li id="fn9"><b>9.</b> 넥슨 메이플스토리M 상점 — <a href="https://shopping.nexon.com/kr/maplestorym/main" target="_blank">shopping.nexon.com</a></li>
-    <li id="fn10"><b>10.</b> 넷마블 일곱개의대죄: GRAND CROSS 모험가 상점 — <a href="https://7dsgc-shop.netmarble.com/ko" target="_blank">7dsgc-shop.netmarble.com</a></li>
+    <li id="fn9"><b>9.</b> 넷마블 일곱개의대죄: GRAND CROSS 모험가 상점 — <a href="https://7ds-shop.netmarble.com/" target="_blank">7ds-shop.netmarble.com</a></li>
+    <li id="fn10"><b>10.</b> 컴투스 서머너즈워: 천공의아레나 웹 상점 — <a href="https://summonerswar-shop.com2us.com/" target="_blank">summonerswar-shop.com2us.com</a></li>
+    <li id="fn11"><b>11.</b> 넷마블 세븐나이츠 Re:BIRTH 공식 웹샵 — <a href="https://skre-shop.netmarble.com/ko" target="_blank">skre-shop.netmarble.com</a></li>
+    <li id="fn12"><b>12.</b> Capcom/Scopely Monster Hunter Now Web Store — <a href="https://store.monsterhunternow.com/en" target="_blank">store.monsterhunternow.com</a></li>
   </ol>
 </div>
 <div class="footer">게임사 웹샵 런칭 및 운영 전략 · 2026.06 · 글로벌 주요 게임사 사례 및 D2C 시장 데이터 기반</div>
@@ -862,9 +877,9 @@
 <script>
 // 매출 추이 차트
 (function() {
-  const labels = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
-  const revenue = [176.2, 93.9, 79.5, 116.6, 22.7, 21.3, 44.6, 5.8, 7.3, 1.5, 0.9, 1.3];
-  const share   = [7.0, 5.1, 6.4, 10.7, 1.8, 1.4, 1.4, 0.4, 0.7, 0.1, 0.1, 0.1];
+  const labels = ['25.1','25.2','25.3','25.4','25.5','25.6','25.7','25.8','25.9','25.10','25.11','25.12','26.1','26.2','26.3','26.4','26.5','26.6'];
+  const revenue = [94.7, 0, 1.0, 12.3, 23.6, 17.7, 0.6, 0.1, 7.5, 2.4, 1.0, 0.6, 2.3, 1.9, 0.1, 2.5, 0.4, 0.7];
+  const share   = [3.8, 0.0, 0.1, 1.1, 1.9, 1.2, 0.0, 0.0, 0.7, 0.2, 0.1, 0.1, 0.1, 0.1, 0.0, 0.2, 0.1, 0.1];
 
   const ctx = document.getElementById('revenueChart').getContext('2d');
   new Chart(ctx, {
@@ -877,10 +892,10 @@
           label: '웹샵 매출 (백만원)',
           data: revenue,
           backgroundColor: revenue.map((v, i) =>
-            i <= 3 ? 'rgba(37,99,235,0.75)' : i <= 6 ? 'rgba(107,114,128,0.5)' : 'rgba(220,38,38,0.55)'
+            i === 0 ? 'rgba(37,99,235,0.9)' : i <= 5 ? 'rgba(37,99,235,0.45)' : i <= 11 ? 'rgba(107,114,128,0.5)' : 'rgba(220,38,38,0.55)'
           ),
           borderColor: revenue.map((v, i) =>
-            i <= 3 ? '#2563EB' : i <= 6 ? '#9CA3AF' : '#DC2626'
+            i === 0 ? '#2563EB' : i <= 5 ? '#2563EB' : i <= 11 ? '#9CA3AF' : '#DC2626'
           ),
           borderWidth: 1,
           borderRadius: 4,
@@ -928,7 +943,7 @@
           title: { display: true, text: '전체 대비 비중 (%)', font: { size: 11 }, color: '#6B7280' },
           grid: { display: false },
           ticks: { font: { size: 11 }, callback: v => v + '%' },
-          min: 0, max: 14
+          min: 0, max: 5
         }
       }
     }
